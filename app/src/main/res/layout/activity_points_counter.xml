@@ -7,11 +7,42 @@
     tools:context="com.example.cip.myapplication.PointsCounterActivity">
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="209dp"
-        android:layout_height="314dp"
-        android:text="Du bist jetzt im Punktezähler "
+        android:id="@+id/textView4"
+        android:layout_width="395dp"
+        android:layout_height="176dp"
+        android:text="Punktezähler: heir kommen die Daten von Spieler 1 und 2 hin (Fragments?)"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="102dp"
-        tools:layout_editor_absoluteY="150dp" />
+        android:background="@color/colorAccent"
+        tools:layout_editor_absoluteX="-4dp"
+        tools:layout_editor_absoluteY="-5dp" />
+
+    <TextView
+        android:id="@+id/player_throw"
+        android:layout_width="245dp"
+        android:layout_height="45dp"
+        android:text="Der Spieler hat geworfen:"
+        android:gravity="center_vertical"
+        tools:layout_editor_absoluteY="171dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/player_throw_points"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:text="Punktzahl"
+        android:gravity="center_vertical"
+        tools:layout_editor_absoluteY="171dp"
+        tools:layout_editor_absoluteX="245dp" />
+
+    <TextView
+        android:layout_width="384dp"
+        android:layout_height="299dp"
+        android:text="Tastatur"
+        android:gravity="center"
+        android:background="@color/colorAccent"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="216dp" />
+
+
 </android.support.constraint.ConstraintLayout>

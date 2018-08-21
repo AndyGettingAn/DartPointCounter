@@ -4,14 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cip.myapplication.StatisticActivity">
+    tools:context="com.example.cip.myapplication.StatisticActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="248dp"
-        android:layout_height="301dp"
-        android:text="Du befindest dich in der Statistik"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Statistik"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="79dp"
-        tools:layout_editor_absoluteY="116dp" />
+        android:background="@color/colorAccent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0p" />
+
 </android.support.constraint.ConstraintLayout>

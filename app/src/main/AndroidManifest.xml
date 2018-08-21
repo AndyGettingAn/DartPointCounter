@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".PointsCounterActivity" />
-        <activity android:name=".StatisticActivity"></activity>
+        <activity android:name=".StatisticActivity" />
+        <activity android:name=".DartboardActivity"></activity>
     </application>
 
 </manifest>

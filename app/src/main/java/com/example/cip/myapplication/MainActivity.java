@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                     mainMessage.setText("Du hast auf Home gedrückt, Wilkommen auf dem Homebildschirm");
                 } else if (id == R.id.nav_counter) {
                     mainMessage.setText("Du hast auf Punktezähler gedrückt");
+                    //Test Dartboard
+                    //Intent intent = new Intent(MainActivity.this, DartboardActivity.class);
                     Intent intent = new Intent(MainActivity.this, PointsCounterActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.nav_statistic) {
