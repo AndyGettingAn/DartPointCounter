@@ -19,9 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PointsCounterActivity" />
-        <activity android:name=".StatisticActivity" />
-        <activity android:name=".DartboardActivity"></activity>
+        <activity android:name=".PointsCounter" />
+        <activity android:name=".Statistic" />
+        <activity android:name=".Dartboard"></activity>
     </application>
 
 </manifest>

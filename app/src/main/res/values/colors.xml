@@ -3,10 +3,4 @@
     <color name="colorPrimary">#006400</color>
     <color name="colorPrimaryDark">#3b3b3b</color>
     <color name="colorAccent">#00ff00</color>
-    <color name="dartboardLight">#bfbfbf</color>
-    <color name="dartboardDark">#000000</color>
-    <color name="dartboardRed">#8b0000</color>
-    <color name="dartboardGreen">#006400</color>
-    <color name="dartboardHighlight">#ffd700</color>
-
 </resources>

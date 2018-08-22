@@ -3,7 +3,7 @@ package com.example.cip.myapplication;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class StatisticActivity extends AppCompatActivity {
+public class Statistic extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

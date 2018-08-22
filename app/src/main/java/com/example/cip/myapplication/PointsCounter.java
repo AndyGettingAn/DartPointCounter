@@ -3,7 +3,7 @@ package com.example.cip.myapplication;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class PointsCounterActivity extends AppCompatActivity {
+public class PointsCounter extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
