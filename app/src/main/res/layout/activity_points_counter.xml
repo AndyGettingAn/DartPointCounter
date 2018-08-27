@@ -6,43 +6,236 @@
     android:layout_height="match_parent"
     tools:context="com.example.cip.myapplication.PointsCounter">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="395dp"
-        android:layout_height="176dp"
-        android:text="Punktezähler: heir kommen die Daten von Spieler 1 und 2 hin (Fragments?)"
-        android:textSize="30sp"
-        android:background="@color/colorAccent"
-        tools:layout_editor_absoluteX="-4dp"
-        tools:layout_editor_absoluteY="-5dp" />
 
-    <TextView
-        android:id="@+id/player_throw"
-        android:layout_width="245dp"
-        android:layout_height="45dp"
-        android:text="Der Spieler hat geworfen:"
-        android:gravity="center_vertical"
-        tools:layout_editor_absoluteY="171dp"
-        tools:layout_editor_absoluteX="0dp" />
+    <TableLayout
 
-    <TextView
-        android:id="@+id/player_throw_points"
-        android:layout_width="150dp"
-        android:layout_height="45dp"
-        android:text="Punktzahl"
-        android:gravity="center_vertical"
-        tools:layout_editor_absoluteY="171dp"
-        tools:layout_editor_absoluteX="245dp" />
+        android:id="@+id/gameState"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
-    <TextView
-        android:layout_width="384dp"
-        android:layout_height="299dp"
-        android:text="Tastatur"
-        android:gravity="center"
-        android:background="@color/colorAccent"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="216dp" />
+        <TableRow
+            android:id="@+id/rowPlayerNames"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/playerName1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Spielername_1" />
+
+            <TextView
+                android:id="@+id/playerName2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Spielername_2" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/rowSetsLegs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/player1Set"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Sets:0" />
+
+            <TextView
+                android:id="@+id/playe1Legs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Legs: 0" />
+
+            <TextView
+                android:id="@+id/player2Set"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Sets:0" />
+
+
+            <TextView
+                android:id="@+id/playe2Legs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Legs: 0" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/rowGameState"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/player1GameState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Spielstand_1" />
+
+            <TextView
+                android:id="@+id/player2GameState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Spielstand_2" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/rowFinish"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/player1Finish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Spieler1_Finish" />
+
+            <Button
+                android:id="@+id/player2Finish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Spieler2_Finish" />
+        </TableRow>
+    </TableLayout>
+
+
+    <LinearLayout
+        android:id="@+id/calculator_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/gameState"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <TextView
+            android:id="@+id/player_throw"
+            android:layout_width="161dp"
+            android:layout_height="63dp"
+            android:gravity="center_vertical"
+            android:text="Der Spieler hat geworfen:"
+            app:layout_constraintBaseline_toBaselineOf="@+id/player_throw_points"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/player_throw_points"
+            android:layout_width="246dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical"
+            android:text="Punktzahl"
+            app:layout_constraintHorizontal_bias="0.411"
+            app:layout_constraintLeft_toRightOf="@+id/player_throw"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="176dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/calculator1"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        app:layout_constraintTop_toBottomOf="@+id/calculator_input"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+        <Button android:layout_height="wrap_content" android:id="@+id/button1" android:text="1" android:layout_weight="1" android:layout_width="fill_parent"></Button>
+        <Button android:layout_height="wrap_content" android:id="@+id/button2" android:text="2" android:layout_weight="1" android:layout_width="fill_parent"></Button>
+        <Button android:layout_height="wrap_content" android:id="@+id/button3" android:text="3" android:layout_weight="1" android:layout_width="fill_parent"></Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/calculator2"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        app:layout_constraintTop_toBottomOf="@+id/calculator1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.100000024"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/button4" android:layout_weight="1" android:text="4"></Button>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/button5" android:layout_weight="1" android:text="5"></Button>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/button6" android:layout_weight="1" android:text="6"></Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/calculator3"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculator2"
+        app:layout_constraintVertical_bias="0.19999999"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+        <Button android:layout_height="wrap_content" android:id="@+id/button7" android:text="7" android:layout_weight="1" android:layout_width="fill_parent"></Button>
+        <Button android:layout_height="wrap_content" android:id="@+id/button8" android:text="8" android:layout_weight="1" android:layout_width="fill_parent"></Button>
+        <Button android:layout_height="wrap_content" android:id="@+id/button9" android:text="9" android:layout_weight="1" android:layout_width="fill_parent"></Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/calculator4"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/calculator3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="1.0"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+        <Button android:layout_height="wrap_content" android:id="@+id/buttonOK" android:text="OK" android:layout_weight="1" android:layout_width="fill_parent"></Button>
+        <Button android:layout_height="wrap_content" android:id="@+id/button0" android:text="0" android:layout_weight="1" android:layout_width="fill_parent"></Button>
+        <Button android:layout_height="wrap_content" android:id="@+id/buttonClear" android:layout_weight="1" android:text="Clear" android:layout_width="fill_parent"></Button>
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>
