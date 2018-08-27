@@ -22,11 +22,8 @@ public class Dartboard extends AppCompatActivity {
     }
 
     class myView extends View {
-
         private Paint paint = new Paint();
-        int finishMultiplier = 0,
-                finishPoints = 0,
-                dartboardLight = Color.rgb(191, 191, 191),
+        private final int dartboardLight = Color.rgb(191, 191, 191),
                 dartboardDark = Color.rgb(0, 0, 0),
                 dartboardRed = Color.rgb(139, 0, 0),
                 dartboardGreen = Color.rgb(0, 100, 0),
@@ -34,8 +31,10 @@ public class Dartboard extends AppCompatActivity {
                 fullCircle = 360,
                 numberOfFields = 20,
                 numberOfFreeSpace = 21;
-        int[] fieldPoints = {6, 10, 15, 2, 17, 3, 19, 7, 16, 8, 11, 14, 9, 12, 5, 20, 1, 18, 4, 13};
-        double fieldsWidth = fullCircle / numberOfFreeSpace,
+        private int finishMultiplier = 0,
+                finishPoints = 0;
+        private int[] fieldPoints = {6, 10, 15, 2, 17, 3, 19, 7, 16, 8, 11, 14, 9, 12, 5, 20, 1, 18, 4, 13};
+        private double fieldsWidth = fullCircle / numberOfFreeSpace,
                 freeSpace = (fullCircle - fieldsWidth * numberOfFields) / numberOfFields,
                 startPoint = -fieldsWidth / 2;
 
