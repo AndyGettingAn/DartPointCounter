@@ -15,31 +15,29 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             dartsPerTurn = 3,
             single = 1,
             doubles = 2,
-            triple = 3;
-
-    private int player1GameState,
-            player2GameState,
-            player1Sets,
-            player2Sets;
-
-    private double player1Average,
-            player2Average;
+            triple = 3,
+            numberOfPlayers = 2,
+            player1 = 0,
+            player2 = 1;
 
 
-    private TextView inputPoints,
-            p1Set,
-            p2Set,
-            p1Average,
-            p2Average,
-            p1GameState,
-            p2GameState;
+    //Array mit Länge 2: Feld 0: Spieler 1, Feld 1: Spieler 2
+    private int [] gameState = new int [numberOfPlayers],
+            sets = new int [numberOfPlayers];
 
-    private Button p1Finish,
-            p2Finish;
+    int currentPlayer;
 
-    //wer momentan spielt. True: player 1 spielt und gibt eine Werte ein
-    private boolean isPlayer1Turn;
+    private double [] average = new double [numberOfPlayers];
 
+
+    private TextView inputPoints;
+
+    private  TextView setsView [] = new TextView[numberOfPlayers],
+            averageView [] = new TextView[numberOfPlayers],
+            gameStateView [] = new TextView[numberOfPlayers];
+
+    private Button buttonFinish [] = new Button[numberOfPlayers];
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +56,14 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.buttonOK).setOnClickListener(this);
         findViewById(R.id.buttonClear).setOnClickListener(this);
         inputPoints = (TextView) findViewById(R.id.player_throw_points);
+        setsView[player1] = (TextView) findViewById(R.id.player1Set);
+        setsView[player2] = (TextView) findViewById(R.id.player2Set);
+        averageView[player1] = (TextView) findViewById(R.id.player1Average);
+        averageView[player2] = (TextView) findViewById(R.id.player2Average);
+        buttonFinish[player1] = (Button) findViewById(R.id.player1Finish);
+        buttonFinish [player2] = (Button) findViewById(R.id.player2Finish);
+        gameStateView[player1] = (TextView) findViewById(R.id.player1GameState);
+        gameStateView[player2] = (TextView) findViewById(R.id.player2GameState);
         setPlayerNames("Andi", "Hami");
         setDefaultValues();
 
@@ -71,30 +77,18 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     }
 
     private void setDefaultValues() {
-        p1Set = (TextView) findViewById(R.id.player1Set);
-        p2Set = (TextView) findViewById(R.id.player2Set);
-        p1Average = (TextView) findViewById(R.id.player1Average);
-        p2Average = (TextView) findViewById(R.id.player2Average);
-        p1Finish = (Button) findViewById(R.id.player1Finish);
-        p2Finish = (Button) findViewById(R.id.player2Finish);
-        p1GameState = (TextView) findViewById(R.id.player1GameState);
-        p2GameState = (TextView) findViewById(R.id.player2GameState);
-        p1Set.setText("Sets: 0");
-        p2Set.setText("Sets: 0");
-        p1Average.setText("Durchschnitt: 0");
-        p2Average.setText("Durchschnitt: 0");
-        p1Finish.setText("");
-        p2Finish.setText("");
-        p1GameState.setText(Integer.toString(startPoints));
-        p2GameState.setText(Integer.toString(startPoints));
-        
-        isPlayer1Turn = true;
-        player1GameState = startPoints;
-        player2GameState = startPoints;
-        player1Average = 0;
-        player2Average = 0;
-        player1Sets = 0;
-        player2Sets = 0;
+        for (int player = 0; player < numberOfPlayers; player++){
+            //view
+            setsView[player].setText("Sets: 0");
+            averageView[player].setText("Durchschnitt: 0");
+            buttonFinish[player].setText("");
+            gameStateView[player].setText(Integer.toString(startPoints));
+            //values
+            gameState[player] = startPoints;
+            sets[player] = 0;
+            average[player] = 0;
+        }
+        currentPlayer = player1;
     }
 
 
@@ -125,32 +119,23 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     private void updateGameState(){
         String inputValue = inputPoints.getText().toString();
         int inputPoints = Integer.parseInt(inputValue);
-        if (isPlayer1Turn){
-            player1GameState -= inputPoints;
-            player1Sets++;
-            //pro Set 3 Darts -> Anzahl der Setz mal 3 um den Durchschnitt pro Dart zu erhalten
-            player1Average = (startPoints-player1GameState)/(player1Sets*3);
-        }else{
-            player2GameState -= inputPoints;
-            player2Sets++;
-            player2Average = (startPoints-player1GameState)/(player2Sets*3);
-        }
+        gameState[currentPlayer] -= inputPoints;
+        sets[currentPlayer]++;
+        average[currentPlayer] = (startPoints-gameState[currentPlayer])/(sets[currentPlayer]*dartsPerTurn);
         updateGameView();
         //Spielerwechsel
-       isPlayer1Turn = !isPlayer1Turn;
+        if (currentPlayer == player1){
+            currentPlayer = player2;
+        }else{
+            currentPlayer = player1;
+        }
     }
 
     private void updateGameView() {
-        if (isPlayer1Turn){
-            p1Set.setText("Sets: " + player1Sets);
-            p1Average.setText("Durchschnitt: "+ player1Average);
-            p1Finish.setText("Finish??");
-            p1GameState.setText(String.valueOf(player1GameState));
-        }else{
-            p2Set.setText("Sets: " + player2Sets);
-            p2Average.setText("Durchschnitt: "+ player2Average);
-            p2Finish.setText("Finish??");
-            p2GameState.setText(String.valueOf(player2GameState));
-        }
+        buttonFinish[currentPlayer].setText("Finish??");
+        averageView[currentPlayer].setText("Durchschnitt: "+ average[currentPlayer]);
+        setsView[currentPlayer].setText("Set: "+ sets[currentPlayer]);
+        buttonFinish[currentPlayer].setText("Finish??");
+        gameStateView[currentPlayer].setText(String.valueOf(gameState[currentPlayer]));
     }
 }
