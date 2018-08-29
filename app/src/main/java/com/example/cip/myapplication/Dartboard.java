@@ -1,6 +1,7 @@
 package com.example.cip.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,53 +16,56 @@ public class Dartboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.activity_dartboard);
-        setContentView(new myView(this));
-        //Extras: Makierte Feld: Multiplikator und Punkt (Z. 26 & 27). OutBull (25,1) und Bull (50,1)werden als Single angegeben.
-
+        Intent intent = getIntent();
+        String [] finishValues = new String[]{""};
+        // damit man auch den Button betätigen kann, wenn keine Extras vorhanden sind
+        if (intent.hasExtra("finishValues")){
+            finishValues = intent.getStringArrayExtra("finishValues");
+        }
+        setContentView(new myView(this, finishValues));
     }
 
     class myView extends View {
         private Paint paint = new Paint();
-        private final int dartboardLight = Color.rgb(191, 191, 191),
+        private final int dartboardLight = Color.rgb(255, 255, 255),
                 dartboardDark = Color.rgb(0, 0, 0),
-                dartboardRed = Color.rgb(139, 0, 0),
+                dartboardRed = Color.rgb(100, 0, 0),
                 dartboardGreen = Color.rgb(0, 100, 0),
-                dartboardHighlight = Color.rgb(255, 215, 0),
+                dartboardHighlight = Color.rgb(255, 255, 0),
+                dartboardBackground = Color.rgb(225,225,225),
                 fullCircle = 360,
                 numberOfFields = 20,
                 numberOfFreeSpace = 21;
-        private int finishMultiplier = 0,
-                finishPoints = 0;
+        private String [] finishValues;
         private int[] fieldPoints = {6, 10, 15, 2, 17, 3, 19, 7, 16, 8, 11, 14, 9, 12, 5, 20, 1, 18, 4, 13};
+
         private double fieldsWidth = fullCircle / numberOfFreeSpace,
                 freeSpace = (fullCircle - fieldsWidth * numberOfFields) / numberOfFields,
                 startPoint = -fieldsWidth / 2;
 
-        public myView(Context context) {
+        public myView(Context context, String [] finishValues) {
             super(context);
+            this.finishValues = finishValues;
         }
 
         @Override
         public void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             drawField(canvas);
-
         }
 
         private void drawField(Canvas canvas) {
-
-            int single = 1,
-                    doubles = 2,
-                    triple = 3,
-                    outBull = 25,
-                    bull = 50,
+            char single = 'S',
+                    doubles = 'D',
+                    triple = 'T';
+            int fistColor = 0,
+                    secondColor = 1,
+                    bull = 25,
                     margin = 60,
                     distance = 5,
                     middle = getWidth() / 2,
                     dartboard = getWidth() - margin,
                     radiusDouble = dartboard / 2;
-
             double widthDouble = dartboard * 0.025,
                     widthBig = dartboard * 0.2,
                     widthTripple = dartboard * 0.025,
@@ -79,25 +83,16 @@ public class Dartboard extends AppCompatActivity {
             RectF rectLittle = new RectF(middle - (radiusLittle), middle - (radiusLittle), middle + (radiusLittle), middle + (radiusLittle));
             RectF rectOutBull = new RectF(middle - (radiusOutBull), middle - (radiusOutBull), middle + (radiusOutBull), middle + (radiusOutBull));
 
+            drawCircle(canvas, dartboardBackground, middle);
             for (int i = 0; i < numberOfFields; i++) {
-                if (i % 2 == 0) {
-                    drawArcs(canvas, getFieldColor(dartboardRed, fieldPoints[i], doubles), rectDouble, (int) widthDouble);
-                    drawArcs(canvas, getFieldColor(dartboardDark, fieldPoints[i], single), rectBig, (int) widthBig);
-                    drawArcs(canvas, getFieldColor(dartboardRed,fieldPoints[i], triple), rectTripple, (int) widthTripple);
-                    drawArcs(canvas, getFieldColor(dartboardDark, fieldPoints[i], single), rectLittle, (int) widthLittle);
-                    startPoint = startPoint + fieldsWidth + freeSpace;
-
-                } else {
-                    drawArcs(canvas, getFieldColor(dartboardGreen, fieldPoints[i], doubles), rectDouble, (int) widthDouble);
-                    drawArcs(canvas, getFieldColor(dartboardLight, fieldPoints[i], single), rectBig, (int) widthBig);
-                    drawArcs(canvas, getFieldColor(dartboardGreen,fieldPoints[i], triple), rectTripple, (int) widthTripple);
-                    drawArcs(canvas, getFieldColor(dartboardLight, fieldPoints[i], single), rectLittle, (int) widthLittle);
-                    startPoint = startPoint + fieldsWidth + freeSpace;
-                }
-
+                drawArcs(canvas, getFieldColor(getColorCombination(i)[fistColor], fieldPoints[i], doubles), rectDouble, (int) widthDouble);
+                drawArcs(canvas, getFieldColor(getColorCombination(i)[secondColor], fieldPoints[i], single), rectBig, (int) widthBig);
+                drawArcs(canvas, getFieldColor(getColorCombination(i)[fistColor],fieldPoints[i], triple), rectTripple, (int) widthTripple);
+                drawArcs(canvas, getFieldColor(getColorCombination(i)[secondColor], fieldPoints[i], single), rectLittle, (int) widthLittle);
+                startPoint = startPoint + fieldsWidth + freeSpace;
             }
-            drawRing(canvas, getFieldColor(dartboardGreen,outBull, single), rectOutBull, (int) widthOutBull);
-            drawCircle(canvas, getFieldColor(dartboardRed, bull, single), radiusBull);
+            drawRing(canvas, getFieldColor(dartboardGreen,bull, single), rectOutBull, (int) widthOutBull);
+            drawCircle(canvas, getFieldColor(dartboardRed, bull, doubles), radiusBull);
         }
 
         private void drawArcs(Canvas canvas, int color, RectF rect, int strokeWidth) {
@@ -122,15 +117,27 @@ public class Dartboard extends AppCompatActivity {
             canvas.drawCircle(getWidth() / 2, getWidth() / 2, radius, paint);
         }
 
-        private int getFieldColor(int color, int points, int multiplier) {
-            if (finishMultiplier == multiplier && finishPoints == points) {
-                return dartboardHighlight;
-            } else {
+        private int getFieldColor(int color, int points, char multiplier) {
+            if (finishValues[0] == ""){
                 return color;
             }
-
+            for (int i = 0; i < finishValues.length; i++ ){
+                char finishMultiplier = finishValues[i].charAt(0);
+                int finishPoints = Integer.parseInt(finishValues[i].substring(1));
+                if (finishMultiplier == multiplier && finishPoints == points) {
+                    return dartboardHighlight;
+                }
+            }
+            return color;
         }
 
+        private int [] getColorCombination (int index){
+            if (index % 2 == 0) {
+                return new int[]{dartboardRed, dartboardDark};
+            }else{
+                return new int[]{dartboardGreen, dartboardLight};
+            }
+        }
     }
 }
 
