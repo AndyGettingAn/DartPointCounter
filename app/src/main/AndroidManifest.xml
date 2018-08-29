@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".PointsCounter" />
         <activity android:name=".Statistic" />
-        <activity android:name=".Dartboard"></activity>
+        <activity android:name=".Dartboard" />
+        <activity android:name=".GameEnd"></activity>
     </application>
 
 </manifest>

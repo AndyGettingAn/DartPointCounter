@@ -152,8 +152,11 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         sets[currentPlayer]++;
         average[currentPlayer] = (startPoints - gameState[currentPlayer]) / (sets[currentPlayer] * dartsPerTurn);
         updateGameView();
+        checkPlayerWin();
         playersChange();
     }
+
+
 
     private void updateGameView() {
         averageView[currentPlayer].setText("Durchschnitt: "+ average[currentPlayer]);
@@ -164,6 +167,12 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         gameStateView[currentPlayer].setText(String.valueOf(gameState[currentPlayer]));
     }
 
+    private void checkPlayerWin() {
+        if (gameState[currentPlayer] == 0){
+            Intent intent = new Intent(PointsCounter.this, GameEnd.class);
+            startActivity(intent);
+        }
+    }
     //Spielerwechsel
     private void playersChange() {
         if (currentPlayer == player1){
