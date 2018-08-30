@@ -142,6 +142,9 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         String inputValue1 = inputPoints[firstThrow].getText().toString();
         String inputValue2 = inputPoints[secondThrow].getText().toString();
         String inputValue3 = inputPoints[thirdThrow].getText().toString();
+        if (inputValue1 == ""){inputValue1 = "0";}
+        if (inputValue2 == ""){inputValue2 = "0";}
+        if (inputValue3 == ""){inputValue3 = "0";}
         int inputPoints1 = Integer.parseInt(inputValue1);
         int inputPoints2 = Integer.parseInt(inputValue2);
         int inputPoints3 = Integer.parseInt(inputValue3);
