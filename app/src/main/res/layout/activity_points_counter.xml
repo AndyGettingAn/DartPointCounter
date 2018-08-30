@@ -35,7 +35,7 @@
                 android:gravity="center"
                 android:textSize="@dimen/player_name_text_size"
                 android:textStyle="bold"
-                android:text="Spielername_1"/>
+                android:text="@string/player_name"/>
 
             <TextView
                 android:id="@+id/playerName2"
@@ -45,7 +45,7 @@
                 android:gravity="center"
                 android:textSize="@dimen/player_name_text_size"
                 android:textStyle="bold"
-                android:text="Spielername_2"/>
+                android:text="@string/player_name"/>
         </TableRow>
 
         <TableRow
@@ -61,7 +61,7 @@
                 android:gravity="left"
                 android:layout_marginBottom="@dimen/margin_small"
                 android:layout_marginTop="@dimen/margin_small"
-                android:text="Sets:0" />
+                android:text="@string/sets" />
 
             <TextView
                 android:id="@+id/player2Set"
@@ -71,7 +71,7 @@
                 android:gravity="left"
                 android:layout_marginBottom="@dimen/margin_small"
                 android:layout_marginTop="@dimen/margin_small"
-                android:text="Sets:0" />
+                android:text="@string/sets" />
         </TableRow>
 
         <TableRow
@@ -87,7 +87,7 @@
                 android:gravity="left"
                 android:layout_marginBottom="@dimen/margin_small"
                 android:layout_marginTop="@dimen/margin_small"
-                android:text="Durchschnitt: 0" />
+                android:text="@string/average" />
 
             <TextView
                 android:id="@+id/player2Average"
@@ -97,7 +97,7 @@
                 android:gravity="left"
                 android:layout_marginBottom="@dimen/margin_small"
                 android:layout_marginTop="@dimen/margin_small"
-                android:text="Durchschnitt: 0" />
+                android:text="@string/average" />
         </TableRow>
 
         <TableRow
@@ -113,7 +113,7 @@
                 android:layout_margin="8sp"
                 android:textSize="@dimen/game_stand_text_size"
                 android:textStyle="bold"
-                android:text="Spielstand_1" />
+                android:text="@string/game_stand" />
 
             <TextView
                 android:id="@+id/player2GameState"
@@ -124,7 +124,7 @@
                 android:layout_margin="8sp"
                 android:textSize="@dimen/game_stand_text_size"
                 android:textStyle="bold"
-                android:text="Spielstand_2" />
+                android:text="@string/game_stand"  />
         </TableRow>
 
         <TableRow
@@ -137,17 +137,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Spieler1_Finish" />
+                android:gravity="center"/>
 
             <Button
                 android:id="@+id/player2Finish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Spieler2_Finish"
-                />
+                android:gravity="center"/>
         </TableRow>
     </TableLayout>
 
@@ -174,7 +171,7 @@
             android:layout_width="wrap_content"
             android:layout_height="63dp"
             android:gravity="center_vertical"
-            android:text="Der Spieler hat geworfen:"
+            android:text="@string/darts_text"
             app:layout_constraintBaseline_toBaselineOf="@+id/player_throw_points"
             app:layout_constraintLeft_toLeftOf="parent"
             android:textSize="@dimen/throw_text_size"/>
@@ -187,7 +184,6 @@
            android:layout_marginLeft="8dp"
            android:layout_marginStart="8dp"
            android:gravity="center_vertical"
-           android:text="1. Wurf"
            app:layout_constraintHorizontal_bias="0.411"
            app:layout_constraintLeft_toRightOf="@+id/player_throw"
            app:layout_constraintRight_toRightOf="parent"
@@ -199,7 +195,6 @@
            android:layout_marginLeft="8dp"
            android:layout_marginStart="8dp"
            android:gravity="center_vertical"
-           android:text="2. Wurf"
            app:layout_constraintHorizontal_bias="0.411"
            app:layout_constraintLeft_toRightOf="@+id/player_throw"
            app:layout_constraintRight_toRightOf="parent"
@@ -211,7 +206,6 @@
            android:layout_marginLeft="8dp"
            android:layout_marginStart="8dp"
            android:gravity="center_vertical"
-           android:text="3. Wurf"
            app:layout_constraintHorizontal_bias="0.411"
            app:layout_constraintLeft_toRightOf="@+id/player_throw"
            app:layout_constraintRight_toRightOf="parent"
@@ -230,8 +224,6 @@
         app:layout_constraintVertical_bias="1.0">
 
         <TableRow>
-
-
             <Button android:layout_height="wrap_content" android:id="@+id/button1" android:text="1" android:layout_weight="1" android:layout_width="fill_parent" android:textSize="@dimen/keypad_text_size" ></Button>
             <Button android:layout_height="wrap_content" android:id="@+id/button2" android:text="2" android:layout_weight="1" android:layout_width="fill_parent" android:textSize="@dimen/keypad_text_size"></Button>
             <Button android:layout_height="wrap_content" android:id="@+id/button3" android:text="3" android:layout_weight="1" android:layout_width="fill_parent" android:textSize="@dimen/keypad_text_size"></Button>

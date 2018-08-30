@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <!--<group android:checkableBehavior="single">-->
             <item
                 android:id="@+id/nav_home"
-                android:title="Home" />
+                android:title="@string/menu_home" />
+
             <item
                 android:id="@+id/nav_counter"
-                android:title="Punktezähler" />
+                android:title="@string/menu_pointcounter" />
             <item
                 android:id="@+id/nav_statistic"
-                android:title="Statistiken" />
-    </group>
+                android:title="@string/menu_statistic" />
+   <!-- </group>-->
 
 
 </menu>

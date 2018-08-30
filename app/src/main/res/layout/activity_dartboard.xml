@@ -7,14 +7,4 @@
     tools:context="com.example.cip.myapplication.Dartboard">
 
 
-
-<!-- Wir nicht gezeichnet
-<TextView
-        android:layout_width="384dp"
-        android:layout_height="wrap_content"
-        android:text="Folgende Felder müssen sie werfen:"
-        android:gravity="center"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="5dp"/>-->
-
 </android.support.constraint.ConstraintLayout>
