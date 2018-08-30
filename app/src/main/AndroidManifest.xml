@@ -22,7 +22,17 @@
         <activity android:name=".PointsCounter" />
         <activity android:name=".Statistic" />
         <activity android:name=".Dartboard" />
-        <activity android:name=".GameEnd"></activity>
+        <activity android:name=".GameEnd" />
+
+        <receiver android:name=".PointCounterWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/point_counter_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

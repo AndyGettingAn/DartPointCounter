@@ -1,17 +1,22 @@
 package com.example.cip.myapplication;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RemoteViews;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.Arrays;
 
-public class PointsCounter extends AppCompatActivity implements View.OnClickListener {
+public class PointsCounter extends AppCompatActivity implements View.OnClickListener{
     private final int startPoints = 501,
             finishModus = 170,
             numberOfPlayers = 2,
@@ -35,6 +40,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     //Wir brauchen alle drei Punkte der Dart umd danach den Spielverlauf zu erstellen
             inputPoints[] = new TextView[dartsPerTurn];
     private Button buttonFinish[] = new Button[numberOfPlayers];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,11 +161,10 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         sets[currentPlayer]++;
         average[currentPlayer] = (startPoints - gameState[currentPlayer]) / (sets[currentPlayer] * dartsPerTurn);
         updateGameView();
+        updateWidget();
         checkPlayerWin();
         playersChange();
     }
-
-
 
     private void updateGameView() {
         averageView[currentPlayer].setText("Durchschnitt: "+ average[currentPlayer]);
@@ -169,6 +174,17 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         }
         gameStateView[currentPlayer].setText(String.valueOf(gameState[currentPlayer]));
     }
+
+
+ private void updateWidget() {
+        Context context = getApplicationContext();
+        PointCounterWidget counter= new PointCounterWidget();
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), PointCounterWidget.class));
+        counter.onUpdate(this,appWidgetManager,ids);
+    }
+
+
 
     private void checkPlayerWin() {
         if (gameState[currentPlayer] == 0){
@@ -200,4 +216,10 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
 
+    public int [] getPlayerGameState() {
+        //Er nimmt die Werte aus Z. 30, nicht den aktuellen Spielstand _>FEHLER liefert falsche Werte
+        return gameState;
+    }
+
 }
+

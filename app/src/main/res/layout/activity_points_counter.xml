@@ -214,38 +214,35 @@
 
     <TableLayout
         android:id="@+id/calculator"
-        android:layout_width="375dp"
+        android:layout_width="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/gameState"
-        android:layout_height="194dp"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="0dp">
 
         <TableRow>
-            <Button android:layout_height="wrap_content" android:id="@+id/button1" android:text="1" android:layout_weight="1" android:layout_width="fill_parent" android:textSize="@dimen/keypad_text_size" ></Button>
-            <Button android:layout_height="wrap_content" android:id="@+id/button2" android:text="2" android:layout_weight="1" android:layout_width="fill_parent" android:textSize="@dimen/keypad_text_size"></Button>
-            <Button android:layout_height="wrap_content" android:id="@+id/button3" android:text="3" android:layout_weight="1" android:layout_width="fill_parent" android:textSize="@dimen/keypad_text_size"></Button>
+            <Button android:layout_height="wrap_content" android:id="@+id/button1" android:text="1" android:layout_weight="1" android:layout_width="match_parent" android:textSize="@dimen/keypad_text_size" ></Button>
+            <Button android:layout_height="wrap_content" android:id="@+id/button2" android:text="2" android:layout_weight="1" android:layout_width="match_parent" android:textSize="@dimen/keypad_text_size"></Button>
+            <Button android:layout_height="wrap_content" android:id="@+id/button3" android:text="3" android:layout_weight="1" android:layout_width="match_parent" android:textSize="@dimen/keypad_text_size"></Button>
         </TableRow>
         <TableRow>
-            <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/button4" android:layout_weight="1" android:text="4" android:textSize="@dimen/keypad_text_size"></Button>
-            <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/button5" android:layout_weight="1" android:text="5" android:textSize="@dimen/keypad_text_size"></Button>
-            <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/button6" android:layout_weight="1" android:text="6" android:textSize="@dimen/keypad_text_size"></Button>
+            <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/button4" android:layout_weight="1" android:text="4" android:textSize="@dimen/keypad_text_size"></Button>
+            <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/button5" android:layout_weight="1" android:text="5" android:textSize="@dimen/keypad_text_size"></Button>
+            <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/button6" android:layout_weight="1" android:text="6" android:textSize="@dimen/keypad_text_size"></Button>
         </TableRow>
         <TableRow>
-            <Button android:layout_height="wrap_content" android:id="@+id/button7" android:text="7" android:layout_weight="1" android:layout_width="fill_parent" android:textSize="@dimen/keypad_text_size"></Button>
-            <Button android:layout_height="wrap_content" android:id="@+id/button8" android:text="8" android:layout_weight="1" android:layout_width="fill_parent" android:textSize="@dimen/keypad_text_size"></Button>
-            <Button android:layout_height="wrap_content" android:id="@+id/button9" android:text="9" android:layout_weight="1" android:layout_width="fill_parent" android:textSize="@dimen/keypad_text_size"></Button>
+            <Button android:layout_height="wrap_content" android:id="@+id/button7" android:text="7" android:layout_weight="1" android:layout_width="match_parent" android:textSize="@dimen/keypad_text_size"></Button>
+            <Button android:layout_height="wrap_content" android:id="@+id/button8" android:text="8" android:layout_weight="1" android:layout_width="match_parent" android:textSize="@dimen/keypad_text_size"></Button>
+            <Button android:layout_height="wrap_content" android:id="@+id/button9" android:text="9" android:layout_weight="1" android:layout_width="match_parent" android:textSize="@dimen/keypad_text_size"></Button>
         </TableRow>
         <TableRow>
-            <Button android:layout_height="wrap_content" android:id="@+id/buttonOK" android:text="OK" android:layout_weight="1" android:layout_width="fill_parent" android:textSize="@dimen/keypad_text_size"></Button>
-            <Button android:layout_height="wrap_content" android:id="@+id/button0" android:text="0" android:layout_weight="1" android:layout_width="fill_parent" android:textSize="@dimen/keypad_text_size"></Button>
-            <Button android:layout_height="wrap_content" android:id="@+id/buttonClear" android:layout_weight="1" android:text="Clear" android:layout_width="fill_parent" android:textSize="@dimen/keypad_text_size"></Button>
+            <Button android:layout_height="wrap_content" android:id="@+id/buttonOK" android:text="OK" android:layout_weight="1" android:layout_width="match_parent" android:textSize="@dimen/keypad_text_size"></Button>
+            <Button android:layout_height="wrap_content" android:id="@+id/button0" android:text="0" android:layout_weight="1" android:layout_width="match_parent" android:textSize="@dimen/keypad_text_size"></Button>
+            <Button android:layout_height="wrap_content" android:id="@+id/buttonClear" android:layout_weight="1" android:text="Clear" android:layout_width="match_parent" android:textSize="@dimen/keypad_text_size"></Button>
         </TableRow>
     </TableLayout>
-
-
-
 
 </android.support.constraint.ConstraintLayout>

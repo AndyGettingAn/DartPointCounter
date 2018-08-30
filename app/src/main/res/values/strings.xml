@@ -15,7 +15,8 @@
     <string name="player_name">Spielername</string>
     <string name="darts_text">Der Spieler hat geworfen:</string>
     <string name="player_win">Herzlichen Glückwunsch! Sie haben das Spiel gewonnen!</string>
-
+    <string name="appwidget_text">Dartzähler Widget</string>
+    <string name="add_widget">Add widget</string>
 
 
 </resources>
