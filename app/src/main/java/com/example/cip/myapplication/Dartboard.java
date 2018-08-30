@@ -35,7 +35,9 @@ public class Dartboard extends AppCompatActivity {
                 dartboardBackground = Color.rgb(225,225,225),
                 fullCircle = 360,
                 numberOfFields = 20,
-                numberOfFreeSpace = 21;
+                numberOfFreeSpace = 21,
+                textSize = 30;
+        private final String text = "Die gelb makierten Felder zeigen an, welche Felder getroffen werden müssen";
         private String [] finishValues;
         private int[] fieldPoints = {6, 10, 15, 2, 17, 3, 19, 7, 16, 8, 11, 14, 9, 12, 5, 20, 1, 18, 4, 13};
 
@@ -82,7 +84,6 @@ public class Dartboard extends AppCompatActivity {
             RectF rectTripple = new RectF(middle - (radiusTriple), middle - (radiusTriple), middle + (radiusTriple), middle + (radiusTriple));
             RectF rectLittle = new RectF(middle - (radiusLittle), middle - (radiusLittle), middle + (radiusLittle), middle + (radiusLittle));
             RectF rectOutBull = new RectF(middle - (radiusOutBull), middle - (radiusOutBull), middle + (radiusOutBull), middle + (radiusOutBull));
-
             drawCircle(canvas, dartboardBackground, middle);
             for (int i = 0; i < numberOfFields; i++) {
                 drawArcs(canvas, getFieldColor(getColorCombination(i)[fistColor], fieldPoints[i], doubles), rectDouble, (int) widthDouble);
@@ -93,6 +94,7 @@ public class Dartboard extends AppCompatActivity {
             }
             drawRing(canvas, getFieldColor(dartboardGreen,bull, single), rectOutBull, (int) widthOutBull);
             drawCircle(canvas, getFieldColor(dartboardRed, bull, doubles), radiusBull);
+            drawText(canvas, dartboardDark, textSize, middle, getHeight()-(getHeight()/5), text);
         }
 
         private void drawArcs(Canvas canvas, int color, RectF rect, int strokeWidth) {
@@ -113,8 +115,15 @@ public class Dartboard extends AppCompatActivity {
 
         private void drawCircle(Canvas canvas, int color, int radius) {
             paint.setColor(color);
-            paint.setStyle(Paint.Style.FILL_AND_STROKE);
+            paint.setStyle(Paint.Style.FILL);
             canvas.drawCircle(getWidth() / 2, getWidth() / 2, radius, paint);
+        }
+
+        private void drawText(Canvas canvas, int color, int tsize, int x, int y, String text ){
+            paint.setColor(color);
+            paint.setTextSize(tsize);
+            paint.setTextAlign(Paint.Align.CENTER);
+            canvas.drawText(text, x, y, paint);
         }
 
         private int getFieldColor(int color, int points, char multiplier) {
