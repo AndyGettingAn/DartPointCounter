@@ -42,6 +42,10 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     private Button buttonFinish[] = new Button[numberOfPlayers];
 
 
+    //Widget
+    private PointCounterWidget counter= new PointCounterWidget();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -177,8 +181,10 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
 
 
  private void updateWidget() {
+        //hier werden die WidgetValues aktualliesiert
+        setWidgetValues();
         Context context = getApplicationContext();
-        PointCounterWidget counter= new PointCounterWidget();
+       // PointCounterWidget counter= new PointCounterWidget();
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), PointCounterWidget.class));
         counter.onUpdate(this,appWidgetManager,ids);
@@ -216,9 +222,14 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
 
-    public int [] getPlayerGameState() {
+    /*public int [] getPlayerGameState() {
         //Er nimmt die Werte aus Z. 30, nicht den aktuellen Spielstand _>FEHLER liefert falsche Werte
+        // Widget greift nur auf lokale variablen zu
         return gameState;
+    }*/
+
+    private void setWidgetValues(){
+        counter.setGameState(gameState);
     }
 
 }

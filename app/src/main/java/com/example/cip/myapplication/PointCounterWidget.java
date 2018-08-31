@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class PointCounterWidget extends AppWidgetProvider {
 
     private static RemoteViews views;
+    private  static int [] gameState = new int [2];
 
     static PointsCounter counter= new PointsCounter();
 
@@ -23,9 +24,12 @@ public class PointCounterWidget extends AppWidgetProvider {
         views = new RemoteViews(context.getPackageName(), R.layout.point_counter_widget);
 
         //Hier sollte der aktuelle Soielstand angezeigt werden
-        int [] stands = counter.getPlayerGameState();
-        views.setTextViewText(R.id.widget_player1GameState, String.valueOf(stands[0]));
-        views.setTextViewText(R.id.widget_player2GameState, String.valueOf(stands[1]));
+       // int [] stands = counter.getPlayerGameState();
+       /* views.setTextViewText(R.id.widget_player1GameState, String.valueOf(stands[0]));
+        views.setTextViewText(R.id.widget_player2GameState, String.valueOf(stands[1]));*/
+
+        views.setTextViewText(R.id.widget_player1GameState, String.valueOf(gameState[0]));
+        views.setTextViewText(R.id.widget_player2GameState, String.valueOf(gameState[1]));
         //Toast.makeText(context, String.valueOf(stands[0]), Toast.LENGTH_SHORT).show();
 
 
@@ -52,7 +56,8 @@ public class PointCounterWidget extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-
-
+    public void setGameState(int[]gameState) {
+        this.gameState = gameState;
+    }
 }
 
