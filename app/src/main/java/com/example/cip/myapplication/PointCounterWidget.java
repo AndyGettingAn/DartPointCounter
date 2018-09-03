@@ -11,38 +11,32 @@ import android.widget.Toast;
  */
 public class PointCounterWidget extends AppWidgetProvider {
 
-    private static RemoteViews views;
-    private  static int [] gameState = new int [2];
+    private static int numberOfPlayers = 2;
 
-    static PointsCounter counter= new PointsCounter();
+    private static String [] playerNames = new String [numberOfPlayers];
+    private  static int []  gameState = new int[numberOfPlayers],
+            sets = new int[numberOfPlayers];
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-      //  CharSequence widgetText = context.getString(R.string.appwidget_text);
-        // Construct the RemoteViews object
-        views = new RemoteViews(context.getPackageName(), R.layout.point_counter_widget);
-
-        //Hier sollte der aktuelle Soielstand angezeigt werden
-       // int [] stands = counter.getPlayerGameState();
-       /* views.setTextViewText(R.id.widget_player1GameState, String.valueOf(stands[0]));
-        views.setTextViewText(R.id.widget_player2GameState, String.valueOf(stands[1]));*/
-
-        views.setTextViewText(R.id.widget_player1GameState, String.valueOf(gameState[0]));
-        views.setTextViewText(R.id.widget_player2GameState, String.valueOf(gameState[1]));
-        //Toast.makeText(context, String.valueOf(stands[0]), Toast.LENGTH_SHORT).show();
-
-
-        // Instruct the widget manager to update the widget
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.point_counter_widget);
+        int player1 = 0;
+        int player2 = 1;
+        views.setTextViewText(R.id.widget_player1Name, playerNames[player1]);
+        views.setTextViewText(R.id.widget_player2Name, playerNames[player2]);
+        views.setTextViewText(R.id.widget_player1GameState, String.valueOf(gameState[player1]));
+        views.setTextViewText(R.id.widget_player2GameState, String.valueOf(gameState[player2]));
+        views.setTextViewText(R.id.widget_player1Set, "Sets: " + String.valueOf(sets[player1]));
+        views.setTextViewText(R.id.widget_player2Set, "Sets: " + String.valueOf(sets[player2]));
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
-            Toast.makeText(context, "Widget has been updated! ", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(context, "Widget has been updated! ", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -58,6 +52,14 @@ public class PointCounterWidget extends AppWidgetProvider {
 
     public void setGameState(int[]gameState) {
         this.gameState = gameState;
+    }
+
+    public void setSets(int[] sets) {
+        this.sets = sets;
+    }
+
+    public void setPlayerNames(String[] playerNames) {
+        this.playerNames = playerNames;
     }
 }
 

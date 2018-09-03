@@ -33,10 +33,11 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             currentThrow;
     private double[] average = new double[numberOfPlayers];
     // private TextView inputPoints;
+    private String [] playerNames = new String [numberOfPlayers];
     private TextView setsView[] = new TextView[numberOfPlayers],
             averageView[] = new TextView[numberOfPlayers],
             gameStateView[] = new TextView[numberOfPlayers],
-            playerNames[] = new TextView[numberOfPlayers],
+            playerNamesView [] = new TextView[numberOfPlayers],
     //Wir brauchen alle drei Punkte der Dart umd danach den Spielverlauf zu erstellen
             inputPoints[] = new TextView[dartsPerTurn];
     private Button buttonFinish[] = new Button[numberOfPlayers];
@@ -51,8 +52,9 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_points_counter);
         initialize();
-        setPlayerNames("Andi", "Hami");
         setDefaultValues();
+        setPlayerNames("Andi", "Hami");
+        updateWidget();
     }
 
     private void initialize() {
@@ -67,8 +69,8 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         buttonFinish[player2] = (Button) findViewById(R.id.player2Finish);
         gameStateView[player1] = (TextView) findViewById(R.id.player1GameState);
         gameStateView[player2] = (TextView) findViewById(R.id.player2GameState);
-        playerNames[player1] = (TextView) findViewById(R.id.playerName1);
-        playerNames[player2] = (TextView) findViewById(R.id.playerName2);
+        playerNamesView[player1] = (TextView) findViewById(R.id.playerName1);
+        playerNamesView[player2] = (TextView) findViewById(R.id.playerName2);
         buttonFinish[player1].setOnClickListener(this);
         buttonFinish[player2].setOnClickListener(this);
         findViewById(R.id.buttonOK).setOnClickListener(this);
@@ -86,8 +88,11 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     }
 
     private void setPlayerNames(String name1, String name2) {
-        playerNames[player1].setText(name1);
-        playerNames[player2].setText(name2);
+        playerNamesView[player1].setText(name1);
+        playerNamesView[player2].setText(name2);
+        playerNames[player1] = name1;
+        playerNames[player2] = name2;
+
     }
 
     private void setDefaultValues() {
@@ -99,13 +104,14 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             gameState[player] = startPoints;
             sets[player] = 0;
             average[player] = 0;
+           // playerNames[player] = "";
         }
         for (int dart = 0; dart < dartsPerTurn; dart++) {
             inputPoints[dart].setText("");
         }
         currentPlayer = player1;
         currentThrow = firstThrow;
-        playerNames[player1].setTextColor(Color.RED);
+        playerNamesView[player1].setTextColor(Color.RED);
     }
 
     @Override
@@ -181,10 +187,8 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
 
 
  private void updateWidget() {
-        //hier werden die WidgetValues aktualliesiert
         setWidgetValues();
         Context context = getApplicationContext();
-       // PointCounterWidget counter= new PointCounterWidget();
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), PointCounterWidget.class));
         counter.onUpdate(this,appWidgetManager,ids);
@@ -202,12 +206,12 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     private void playersChange() {
         if (currentPlayer == player1){
             currentPlayer = player2;
-            playerNames[player1].setTextColor(Color.BLACK);
-            playerNames[player2].setTextColor(Color.RED);
+            playerNamesView[player1].setTextColor(Color.BLACK);
+            playerNamesView[player2].setTextColor(Color.RED);
         }else{
             currentPlayer = player1;
-            playerNames[player1].setTextColor(Color.RED);
-            playerNames[player2].setTextColor(Color.BLACK);
+            playerNamesView[player1].setTextColor(Color.RED);
+            playerNamesView[player2].setTextColor(Color.BLACK);
         }
         currentThrow = firstThrow;
     }
@@ -222,14 +226,10 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
 
-    /*public int [] getPlayerGameState() {
-        //Er nimmt die Werte aus Z. 30, nicht den aktuellen Spielstand _>FEHLER liefert falsche Werte
-        // Widget greift nur auf lokale variablen zu
-        return gameState;
-    }*/
-
     private void setWidgetValues(){
         counter.setGameState(gameState);
+        counter.setSets(sets);
+        counter.setPlayerNames(playerNames);
     }
 
 }
