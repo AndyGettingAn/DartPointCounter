@@ -27,12 +27,13 @@ public class Dartboard extends AppCompatActivity {
 
     class myView extends View {
         private Paint paint = new Paint();
-        private final int dartboardLight = Color.rgb(255, 255, 255),
-                dartboardDark = Color.rgb(0, 0, 0),
-                dartboardRed = Color.rgb(100, 0, 0),
-                dartboardGreen = Color.rgb(0, 100, 0),
+        private final int dartboardLight = Color.rgb(245, 245, 245),
+                dartboardDark = Color.rgb(10, 10, 10),
+                dartboardRed = Color.rgb(179,59,59),
+                dartboardGreen = Color.rgb(140,191,64),
                 dartboardHighlight = Color.rgb(255, 255, 0),
-                dartboardBackground = Color.rgb(225,225,225),
+                canvasBackground = Color.rgb(224,209,188),
+                dartboardBackground = Color.rgb(10,10,10),
                 fullCircle = 360,
                 numberOfFields = 20,
                 numberOfFreeSpace = 21,
@@ -53,10 +54,11 @@ public class Dartboard extends AppCompatActivity {
         @Override
         public void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            drawField(canvas);
+            canvas.drawColor(canvasBackground);
+            drawDartboard(canvas);
         }
 
-        private void drawField(Canvas canvas) {
+        private void drawDartboard(Canvas canvas) {
             char single = 'S',
                     doubles = 'D',
                     triple = 'T';
