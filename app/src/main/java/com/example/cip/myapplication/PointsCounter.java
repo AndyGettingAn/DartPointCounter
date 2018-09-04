@@ -222,7 +222,8 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         if (gameState[currentPlayer] == 0){
             Intent intent = new Intent(PointsCounter.this, GameEnd.class);
             GameHistory gamehistory = new GameHistory(counter_100, counter_160, counter_180, average, highestThrow, playerNames);
-
+            MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
+            dbHandler.addHandler(gamehistory);
             startActivity(intent);
         }
     }
