@@ -28,7 +28,12 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             thirdThrow = 2;
     //Array mit Länge 2: Feld 0: Spieler 1, Feld 1: Spieler 2
     private int[] gameState = new int[numberOfPlayers],
-            sets = new int[numberOfPlayers];
+            sets = new int[numberOfPlayers],
+            counter_100 = new int[numberOfPlayers],
+            counter_160 = new int[numberOfPlayers],
+            counter_180 = new int[numberOfPlayers],
+            highestThrow = new int[numberOfPlayers];
+
     int currentPlayer,
             currentThrow;
     private double[] average = new double[numberOfPlayers];
@@ -165,6 +170,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         int inputPoints2 = Integer.parseInt(inputValue2);
         int inputPoints3 = Integer.parseInt(inputValue3);
         int sum = inputPoints1+inputPoints2+inputPoints3;
+        checkValues(inputPoints1,inputPoints2,inputPoints3);
         if (gameState[currentPlayer]-sum >= 0) {
             gameState[currentPlayer] -= sum;
         }
@@ -174,6 +180,22 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         updateWidget();
         checkPlayerWin();
         playersChange();
+    }
+
+    private void checkValues(int input1,int input2,int input3){
+        int[] inputs = new int[]{input1,input2,input3};
+        for(int i = 0; i < inputs.length; i++){
+            if(inputs[i] == 180){
+                counter_180[currentPlayer]++;
+            }else if(inputs[i] >= 160){
+                counter_160[currentPlayer]++;
+            }else if(inputs[i] >= 100){
+                counter_100[currentPlayer]++;
+            }
+            if (inputs[i] > highestThrow[currentPlayer]){
+                highestThrow[currentPlayer] = inputs[i];
+            }
+        }
     }
 
     private void updateGameView() {
@@ -199,6 +221,8 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     private void checkPlayerWin() {
         if (gameState[currentPlayer] == 0){
             Intent intent = new Intent(PointsCounter.this, GameEnd.class);
+            GameHistory gamehistory = new GameHistory(counter_100, counter_160, counter_180, average, highestThrow, playerNames);
+
             startActivity(intent);
         }
     }
