@@ -4,15 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" >
    <!-- tools:context="com.example.cip.myapplication.MainActivity"
     tools:showIn="@layout/app_bar_main">-->
 
-    <TextView
-        android:id="@+id/mainText"
-        android:text="Hey Leute! Wenn man mit Dem Finger vom linken Rand nach rechts zieht erscheind das Burger Menü. Ich hoffe das passt ca... Unter activity_main_drawer.xml findet ihr die einzelnen Menüteile und die Icons (im Kommentar, fehlen noch) in app_bar.xml findet ihr ein Kommentar wo man noch ein Widget einbauen kann (falls wir das brauchen)"
-        android:textSize="24sp"
-        android:layout_height="567dp"
-        android:layout_width="384dp" />
 
 </android.support.constraint.ConstraintLayout>
