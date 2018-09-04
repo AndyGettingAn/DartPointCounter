@@ -19,11 +19,17 @@ android {
     }
 }
 
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+
+    //Facebook
+    compile group: 'com.facebook.android', name: 'facebook-android-sdk', version: '4.25.0'
+    //compile 'com.facebook.android:facebook-android-sdk:4.28.0'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
