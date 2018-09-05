@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 
 
@@ -56,6 +57,12 @@ public class Dartboard extends AppCompatActivity {
             super.onDraw(canvas);
             canvas.drawColor(canvasBackground);
             drawDartboard(canvas);
+        }
+
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent ev) {
+            finish();
+            return super.dispatchTouchEvent(ev);
         }
 
         private void drawDartboard(Canvas canvas) {

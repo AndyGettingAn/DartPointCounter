@@ -9,7 +9,8 @@ import android.widget.Button;
 
 public class GameEnd extends AppCompatActivity {
 
-    Button bt;
+    Button bShare,
+        bNewGame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,8 +19,8 @@ public class GameEnd extends AppCompatActivity {
         MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.win);
         mp.start();
 
-        bt = (Button) findViewById(R.id.buttonShare);
-        bt.setOnClickListener(new View.OnClickListener() {
+        bShare = (Button) findViewById(R.id.buttonShare);
+        bShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(Intent.ACTION_SEND);
@@ -29,6 +30,16 @@ public class GameEnd extends AppCompatActivity {
                 myIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
                 myIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(myIntent, "Erfolg teilen"));
+            }
+        });
+
+        bNewGame = (Button) findViewById(R.id.buttonNewGame);
+        bNewGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GameEnd.this, PointsCounter.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

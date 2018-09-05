@@ -2,7 +2,7 @@
     android:id="@+id/widget"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#50006400"
+    android:background="#50E0D1BC"
     android:orientation="vertical"
     android:padding="@dimen/widget_margin">
 

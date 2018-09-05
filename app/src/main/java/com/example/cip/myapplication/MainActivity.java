@@ -53,17 +53,11 @@ public class MainActivity extends AppCompatActivity{
             public boolean onNavigationItemSelected(MenuItem item) {
                 int id = item.getItemId();
 
-
                 if (id == R.id.nav_home) {
-                    ///mainMessage.setText("Du hast auf Home gedrückt, Wilkommen auf dem Homebildschirm");
                 } else if (id == R.id.nav_counter) {
-                   /// mainMessage.setText("Du hast auf Punktezähler gedrückt");
-                    //Test Dartboard
-                    //Intent intent = new Intent(MainActivity.this, Dartboard.class);
                    Intent intent = new Intent(MainActivity.this, PointsCounter.class);
                     startActivity(intent);
                 } else if (id == R.id.nav_statistic) {
-                    ///mainMessage.setText("Du hast auf Statistik gedrückt");
                     Intent intent = new Intent(MainActivity.this, Statistic.class);
                     startActivity(intent);
 

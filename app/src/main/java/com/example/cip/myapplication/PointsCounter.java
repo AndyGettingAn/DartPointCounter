@@ -47,7 +47,6 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             inputPoints[] = new TextView[dartsPerTurn];
     private Button buttonFinish[] = new Button[numberOfPlayers];
 
-
     //Widget
     private PointCounterWidget counter= new PointCounterWidget();
 
@@ -201,7 +200,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     private void updateGameView() {
         averageView[currentPlayer].setText("Durchschnitt: "+ average[currentPlayer]);
         setsView[currentPlayer].setText("Set: "+ sets[currentPlayer]);
-        if (gameState[currentPlayer]<= finishModus){
+        if (gameState[currentPlayer]<= finishModus && gameState[currentPlayer] != 0){
            openPlayerDartboard(currentPlayer);
         }
         gameStateView[currentPlayer].setText(String.valueOf(gameState[currentPlayer]));
@@ -225,6 +224,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
             dbHandler.addHandler(gamehistory);
             startActivity(intent);
+            finish();
         }
     }
     //Spielerwechsel
@@ -243,7 +243,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
 
     private void openPlayerDartboard(int player){
         Intent intent = new Intent(PointsCounter.this, Dartboard.class);
-        if (gameState[player]<= finishModus && FinishValues.getFinish(gameState[player])[0] != "" ){
+        if (gameState[player]<= finishModus && FinishValues.getFinish(gameState[player])[0] != ""){
             String [] finishValues = FinishValues.getFinish(gameState[player]);
             buttonFinish[player].setText(Arrays.toString(finishValues));
             intent.putExtra("finishValues", finishValues);
