@@ -10,45 +10,39 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class GameEnd extends AppCompatActivity {
+public class GameEnd extends AppCompatActivity implements View.OnClickListener {
 
-    Button bShare,
-        bNewGame;
     private File imagePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_end);
-
         MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.win);
         mp.start();
+        Button bShare = (Button) findViewById(R.id.buttonShare);
+        Button bNewGame = (Button) findViewById(R.id.buttonNewGame);
+        bShare.setOnClickListener(this);
+        bNewGame.setOnClickListener(this);
+    }
 
-        bShare = (Button) findViewById(R.id.buttonShare);
-        bShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bitmap bitmap = takeScreenshot();
-                saveBitmap(bitmap);
-                shareIt();
-            }
-        });
-
-        bNewGame = (Button) findViewById(R.id.buttonNewGame);
-        bNewGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(GameEnd.this, PointsCounter.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.buttonShare){
+            Bitmap bitmap = takeScreenshot();
+            saveBitmap(bitmap);
+            shareIt();
+        }else if (id == R.id.buttonNewGame){
+            Intent intent = new Intent(GameEnd.this, PointsCounter.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public Bitmap takeScreenshot() {
@@ -81,8 +75,6 @@ public class GameEnd extends AppCompatActivity {
         //sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         //sharingIntent.putExtra(Intent.EXTRA_TITLE,  shareBody);
         sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
-
         startActivity(Intent.createChooser(sharingIntent, "Teilen über"));
     }
-
 }

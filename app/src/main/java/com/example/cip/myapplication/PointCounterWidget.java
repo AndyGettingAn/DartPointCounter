@@ -4,11 +4,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
-/**
- * Implementation of App Widget functionality.
- */
 public class PointCounterWidget extends AppWidgetProvider {
 
     private static int numberOfPlayers = 2;
@@ -20,9 +16,9 @@ public class PointCounterWidget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.point_counter_widget);
         int player1 = 0;
         int player2 = 1;
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.point_counter_widget);
         views.setTextViewText(R.id.widget_player1Name, playerNames[player1]);
         views.setTextViewText(R.id.widget_player2Name, playerNames[player2]);
         views.setTextViewText(R.id.widget_player1GameState, String.valueOf(gameState[player1]));
@@ -36,7 +32,6 @@ public class PointCounterWidget extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
-           // Toast.makeText(context, "Widget has been updated! ", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -33,23 +33,17 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             counter_160 = new int[numberOfPlayers],
             counter_180 = new int[numberOfPlayers],
             highestThrow = new int[numberOfPlayers];
-
     int currentPlayer,
             currentThrow;
     private double[] average = new double[numberOfPlayers];
-    // private TextView inputPoints;
     private String [] playerNames = new String [numberOfPlayers];
     private TextView setsView[] = new TextView[numberOfPlayers],
             averageView[] = new TextView[numberOfPlayers],
             gameStateView[] = new TextView[numberOfPlayers],
             playerNamesView [] = new TextView[numberOfPlayers],
-    //Wir brauchen alle drei Punkte der Dart umd danach den Spielverlauf zu erstellen
             inputPoints[] = new TextView[dartsPerTurn];
     private Button buttonFinish[] = new Button[numberOfPlayers];
-
-    //Widget
     private PointCounterWidget counter= new PointCounterWidget();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -256,6 +250,5 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         counter.setSets(sets);
         counter.setPlayerNames(playerNames);
     }
-
 }
 

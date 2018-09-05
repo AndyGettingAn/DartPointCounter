@@ -15,28 +15,14 @@ public class FinishValues {
         switch (points) {
             case 170:
                 return new String[]{"T20", "T20", "D25"};
-            /*case 169:
-                return new String[]{noFinishMessage};
-            case 168:
-                return new String[]{noFinishMessage};*/
             case 167:
                 return new String[]{"T20", "T19", "D25"};
-            /*case 166:
-                return new String[]{noFinishMessage};
-            case 165:
-                return new String[]{noFinishMessage};*/
             case 164:
                 return new String[]{"T20", "T18", "D25"};
-           /* case 163:
-                return new String[]{noFinishMessage};
-            case 162:
-                return new String[]{noFinishMessage};*/
             case 161:
                 return new String[]{"T20", "T17", "D25"};
             case 160:
                 return new String[]{"T20", "T20", "D20"};
-            /*case 159:
-                return new String[]{noFinishMessage};*/
             case 158:
                 return new String[]{"T20", "T20", "D19"};
             case 157:
