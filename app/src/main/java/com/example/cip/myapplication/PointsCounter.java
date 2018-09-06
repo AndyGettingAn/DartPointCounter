@@ -4,10 +4,15 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+import android.support.v7.preference.PreferenceManager;
+>>>>>>> 8dcadc60da028ffa7e39dc37bd5a31a646877477
 import android.view.View;
 import android.widget.Button;
 import android.widget.RemoteViews;
@@ -18,9 +23,13 @@ import android.widget.Toast;
 import java.util.Arrays;
 
 public class PointsCounter extends AppCompatActivity implements View.OnClickListener{
+<<<<<<< HEAD
     private  static final String LOG_TAG = PointsCounter.class.getSimpleName();
     private final int startPoints = 501,
             finishModus = 170,
+=======
+    private final int finishModus = 170,
+>>>>>>> 8dcadc60da028ffa7e39dc37bd5a31a646877477
             numberOfPlayers = 2,
             player1 = 0,
             player2 = 1,
@@ -35,7 +44,8 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             counter_160 = new int[numberOfPlayers],
             counter_180 = new int[numberOfPlayers],
             highestThrow = new int[numberOfPlayers];
-    int currentPlayer,
+    int startPoints,
+            currentPlayer,
             currentThrow;
     private double[] average = new double[numberOfPlayers];
     private String [] playerNames = new String [numberOfPlayers];
@@ -45,15 +55,26 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             playerNamesView [] = new TextView[numberOfPlayers],
             inputPoints[] = new TextView[dartsPerTurn];
     private Button buttonFinish[] = new Button[numberOfPlayers];
+
+
     private PointCounterWidget counter= new PointCounterWidget();
+
+
+    private Boolean dartboardRequired,
+                    gameVariant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_points_counter);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        dartboardRequired = sharedPref.getBoolean(Settings.KEY_DARTBOARD, false);
+        String p1Name = sharedPref.getString(Settings.KEY_PLAYER1_NAME, "Name not found");
+        String p2Name = sharedPref.getString(Settings.KEY_PLAYER2_NAME, "Name not found");
+        gameVariant = sharedPref.getBoolean(Settings.KEY_GAME_VARIANT, false);
         initialize();
         setDefaultValues();
-        setPlayerNames("Andi", "Hami");
+        setPlayerNames(p1Name, p2Name);
         updateWidget();
     }
 
@@ -96,6 +117,11 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     }
 
     private void setDefaultValues() {
+        if (gameVariant){
+            startPoints = 501;
+        }else {
+            startPoints = 301;
+        }
         for (int player = 0; player < numberOfPlayers; player++) {
             setsView[player].setText("Sets: 0");
             averageView[player].setText("Durchschnitt: 0");
@@ -196,7 +222,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     private void updateGameView() {
         averageView[currentPlayer].setText("Durchschnitt: "+ average[currentPlayer]);
         setsView[currentPlayer].setText("Set: "+ sets[currentPlayer]);
-        if (gameState[currentPlayer]<= finishModus && gameState[currentPlayer] != 0){
+        if (gameState[currentPlayer]<= finishModus && gameState[currentPlayer] != 0 && dartboardRequired){
            openPlayerDartboard(currentPlayer);
         }
         gameStateView[currentPlayer].setText(String.valueOf(gameState[currentPlayer]));
@@ -216,6 +242,9 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     private void checkPlayerWin() {
         if (gameState[currentPlayer] == 0){
             Intent intent = new Intent(PointsCounter.this, GameEnd.class);
+            intent.putExtra("winnerName", playerNames[currentPlayer]);
+            intent.putExtra("loserName", playerNames[getOtherPlayer()]);
+            intent.putExtra("set", sets[currentPlayer]);
             GameHistory gamehistory = new GameHistory(counter_100, counter_160, counter_180, average, highestThrow, playerNames);
             StatisticDbSource source = new StatisticDbSource(this);
             source.addHistory(gamehistory);
@@ -226,15 +255,9 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     }
     //Spielerwechsel
     private void playersChange() {
-        if (currentPlayer == player1){
-            currentPlayer = player2;
-            playerNamesView[player1].setTextColor(Color.BLACK);
-            playerNamesView[player2].setTextColor(Color.RED);
-        }else{
-            currentPlayer = player1;
-            playerNamesView[player1].setTextColor(Color.RED);
-            playerNamesView[player2].setTextColor(Color.BLACK);
-        }
+        currentPlayer = getOtherPlayer();
+        playerNamesView[currentPlayer].setTextColor(Color.RED);
+        playerNamesView[getOtherPlayer()].setTextColor(Color.BLACK);
         currentThrow = firstThrow;
     }
 
@@ -252,6 +275,14 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         counter.setGameState(gameState);
         counter.setSets(sets);
         counter.setPlayerNames(playerNames);
+    }
+
+    private int getOtherPlayer(){
+        if (currentPlayer == player1){
+            return player2;
+        }else {
+            return player1;
+        }
     }
 }
 

@@ -1,15 +1,17 @@
 package com.example.cip.myapplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.content.Intent;
-
+import android.widget.Toast;
 
 
 //public class MainActivity extends AppCompatActivity {
@@ -22,10 +24,13 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+<<<<<<< HEAD
+=======
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+>>>>>>> 8dcadc60da028ffa7e39dc37bd5a31a646877477
 
 
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -48,20 +53,18 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 int id = item.getItemId();
-
-                if (id == R.id.nav_home) {
-                } else if (id == R.id.nav_counter) {
-                   Intent intent = new Intent(MainActivity.this, PointsCounter.class);
+                Intent intent = new Intent();
+                if (id == R.id.nav_settings) {
+                    intent = new Intent(MainActivity.this, Settings.class);
+                    } else if (id == R.id.nav_counter) {
+                        intent = new Intent(MainActivity.this, PointsCounter.class);
+                    } else if (id == R.id.nav_statistic) {
+                        intent = new Intent(MainActivity.this, Statistic.class);
+                    }
                     startActivity(intent);
-                } else if (id == R.id.nav_statistic) {
-                    Intent intent = new Intent(MainActivity.this, Statistic.class);
-                    startActivity(intent);
-
-                }
-
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
+                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
+                    return true;
             }
 
 
@@ -70,7 +73,7 @@ public class MainActivity extends AppCompatActivity{
 
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed(){
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);

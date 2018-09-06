@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:background="@drawable/gradient"
     tools:context="com.example.cip.myapplication.Statistic"
     tools:layout_editor_absoluteY="81dp"
@@ -18,5 +19,8 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0p"
         tools:ignore="MissingConstraints" />
+=======
+    tools:context="com.example.cip.myapplication.Settings">
+>>>>>>> 8dcadc60da028ffa7e39dc37bd5a31a646877477
 
 </android.support.constraint.ConstraintLayout>
