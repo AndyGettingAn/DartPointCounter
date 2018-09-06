@@ -16,7 +16,6 @@
         android:text="Statistik"
         android:textSize="30sp"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0p"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="0p" />
 
 </android.support.constraint.ConstraintLayout>
