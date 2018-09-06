@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RemoteViews;
@@ -19,6 +20,9 @@ import android.widget.Toast;
 import java.util.Arrays;
 
 public class PointsCounter extends AppCompatActivity implements View.OnClickListener{
+
+    private  static final String LOG_TAG = PointsCounter.class.getSimpleName();
+
     private final int finishModus = 170,
             numberOfPlayers = 2,
             player1 = 0,
@@ -236,9 +240,9 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             intent.putExtra("loserName", playerNames[getOtherPlayer()]);
             intent.putExtra("set", sets[currentPlayer]);
             GameHistory gamehistory = new GameHistory(counter_100, counter_160, counter_180, average, highestThrow, playerNames);
-            MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
-            dbHandler.addHandler(gamehistory);
-            startActivity(intent);
+            StatisticDbSource source = new StatisticDbSource(this);
+            source.addHistory(gamehistory);
+            Log.e(LOG_TAG, "DB erstellt!");
             finish();
         }
     }
