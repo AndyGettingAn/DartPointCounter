@@ -46,20 +46,18 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 int id = item.getItemId();
-
-                if (id == R.id.nav_home) {
-                } else if (id == R.id.nav_counter) {
-                   Intent intent = new Intent(MainActivity.this, PointsCounter.class);
+                Intent intent = new Intent();
+                if (id == R.id.nav_settings) {
+                    //intent = new Intent(MainActivity.this, Settings.class);
+                    } else if (id == R.id.nav_counter) {
+                        intent = new Intent(MainActivity.this, PointsCounter.class);
+                    } else if (id == R.id.nav_statistic) {
+                        intent = new Intent(MainActivity.this, Statistic.class);
+                    }
                     startActivity(intent);
-                } else if (id == R.id.nav_statistic) {
-                    Intent intent = new Intent(MainActivity.this, Statistic.class);
-                    startActivity(intent);
-
-                }
-
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
+                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
+                    return true;
             }
 
 
@@ -68,7 +66,7 @@ public class MainActivity extends AppCompatActivity{
 
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed(){
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
