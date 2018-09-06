@@ -214,6 +214,9 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     private void checkPlayerWin() {
         if (gameState[currentPlayer] == 0){
             Intent intent = new Intent(PointsCounter.this, GameEnd.class);
+            intent.putExtra("winnerName", playerNames[currentPlayer]);
+            intent.putExtra("loserName", playerNames[getOtherPlayer()]);
+            intent.putExtra("set", sets[currentPlayer]);
             GameHistory gamehistory = new GameHistory(counter_100, counter_160, counter_180, average, highestThrow, playerNames);
             MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
             dbHandler.addHandler(gamehistory);
@@ -223,15 +226,9 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     }
     //Spielerwechsel
     private void playersChange() {
-        if (currentPlayer == player1){
-            currentPlayer = player2;
-            playerNamesView[player1].setTextColor(Color.BLACK);
-            playerNamesView[player2].setTextColor(Color.RED);
-        }else{
-            currentPlayer = player1;
-            playerNamesView[player1].setTextColor(Color.RED);
-            playerNamesView[player2].setTextColor(Color.BLACK);
-        }
+        currentPlayer = getOtherPlayer();
+        playerNamesView[currentPlayer].setTextColor(Color.RED);
+        playerNamesView[getOtherPlayer()].setTextColor(Color.BLACK);
         currentThrow = firstThrow;
     }
 
@@ -249,6 +246,14 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         counter.setGameState(gameState);
         counter.setSets(sets);
         counter.setPlayerNames(playerNames);
+    }
+
+    private int getOtherPlayer(){
+        if (currentPlayer == player1){
+            return player2;
+        }else {
+            return player1;
+        }
     }
 }
 
