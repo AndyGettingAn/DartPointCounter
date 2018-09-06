@@ -5,12 +5,12 @@
         android:key="p1_name"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Spieler 1: Name" />
+        android:title="Geben Sie Spielername 1 ein" />
     <EditTextPreference
         android:key="p2_name"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Spieler 2: Name" />
+        android:title="Geben Sie Spielername 2 ein" />
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="dartboard_preference"

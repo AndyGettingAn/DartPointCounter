@@ -59,8 +59,8 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_points_counter);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         dartboardRequired = sharedPref.getBoolean(Settings.KEY_DARTBOARD, false);
-        String p1Name = sharedPref.getString(Settings.KEY_PLAYER1_NAME, "Name not found");
-        String p2Name = sharedPref.getString(Settings.KEY_PLAYER2_NAME, "Name not found");
+        String p1Name = sharedPref.getString(Settings.KEY_PLAYER1_NAME, "Spieler 1");
+        String p2Name = sharedPref.getString(Settings.KEY_PLAYER2_NAME, "Spieler 2");
         gameVariant = sharedPref.getBoolean(Settings.KEY_GAME_VARIANT, false);
         initialize();
         setDefaultValues();
