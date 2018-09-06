@@ -21,9 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PointsCounter" />
-        <activity android:name=".Statistic" />
-        <activity android:name=".Dartboard" />
+        <activity android:name=".PointsCounter"/>
+        <activity android:name=".Statistic"
+            android:label="@string/menu_statistic"/>
+        <activity android:name=".Dartboard"/>
         <activity android:name=".GameEnd" />
 
         <receiver android:name=".PointCounterWidget">
@@ -35,6 +36,14 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/point_counter_widget_info" />
         </receiver>
+
+        <activity android:name=".Settings"
+            android:label="@string/menu_settings"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

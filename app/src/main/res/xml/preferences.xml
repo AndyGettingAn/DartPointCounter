@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="p1_name"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Spieler 1: Name" />
+    <EditTextPreference
+        android:key="p2_name"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Spieler 2: Name" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="dartboard_preference"
+        android:summaryOn="im Finishmodus wird die Dartscheibe eingeblendet"
+        android:title="Dartschiebe automatisch einblenden" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="game_preference"
+        android:title="Spielvariante"
+        android:summaryOn="501"
+        android:summaryOff="301"/>
+</PreferenceScreen>
