@@ -243,6 +243,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             StatisticDbSource source = new StatisticDbSource(this);
             source.addHistory(gamehistory);
             Log.e(LOG_TAG, "DB erstellt!");
+            startActivity(intent);
             finish();
         }
     }
