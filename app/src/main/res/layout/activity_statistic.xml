@@ -4,18 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
-    tools:context="com.example.cip.myapplication.Statistic"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Statistik"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0p" />
+    tools:context="com.example.cip.myapplication.Settings">
 
 </android.support.constraint.ConstraintLayout>

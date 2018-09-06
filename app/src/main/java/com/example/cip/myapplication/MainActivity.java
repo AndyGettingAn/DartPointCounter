@@ -1,15 +1,17 @@
 package com.example.cip.myapplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.content.Intent;
-
+import android.widget.Toast;
 
 
 //public class MainActivity extends AppCompatActivity {
@@ -22,9 +24,11 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
 
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +52,7 @@ public class MainActivity extends AppCompatActivity{
                 int id = item.getItemId();
                 Intent intent = new Intent();
                 if (id == R.id.nav_settings) {
-                    //intent = new Intent(MainActivity.this, Settings.class);
+                    intent = new Intent(MainActivity.this, Settings.class);
                     } else if (id == R.id.nav_counter) {
                         intent = new Intent(MainActivity.this, PointsCounter.class);
                     } else if (id == R.id.nav_statistic) {
