@@ -17,7 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 public class PointsCounter extends AppCompatActivity implements View.OnClickListener{
 
@@ -222,7 +224,6 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         gameStateView[currentPlayer].setText(String.valueOf(gameState[currentPlayer]));
     }
 
-
     private void updateWidget() {
         setWidgetValues();
         Context context = getApplicationContext();
@@ -231,18 +232,13 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         counter.onUpdate(this,appWidgetManager,ids);
     }
 
-
-
     private void checkPlayerWin() {
         if (gameState[currentPlayer] == 0){
             Intent intent = new Intent(PointsCounter.this, GameEnd.class);
             intent.putExtra("winnerName", playerNames[currentPlayer]);
             intent.putExtra("loserName", playerNames[getOtherPlayer()]);
             intent.putExtra("set", sets[currentPlayer]);
-            GameHistory gamehistory = new GameHistory(counter_100, counter_160, counter_180, average, highestThrow, playerNames);
-            StatisticDbSource source = new StatisticDbSource(this);
-            source.addHistory(gamehistory);
-            Log.e(LOG_TAG, "DB erstellt!");
+            setGameHistory();
             startActivity(intent);
             finish();
         }
@@ -277,6 +273,21 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         }else {
             return player1;
         }
+    }
+
+    //CONTEXT fehlt noch: Durchschnitt ect. und Teilen
+    private void setGameHistory(){
+        DartDbHandler db = new DartDbHandler(this);
+        String title = playerNames[player1].toString() + " gegen " + playerNames[player2].toString() + "\n  am "  + getDate();
+        String content = "CONTEXT";
+        GameHistory history =  new GameHistory(title,content);
+        db.addNote(history);
+    }
+
+    private String getDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss");
+        String currentDateandTime = sdf.format(new Date());
+        return currentDateandTime;
     }
 }
 
