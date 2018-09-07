@@ -23,8 +23,6 @@ import java.util.Date;
 
 public class PointsCounter extends AppCompatActivity implements View.OnClickListener{
 
-    private  static final String LOG_TAG = PointsCounter.class.getSimpleName();
-
     private final int finishModus = 170,
             numberOfPlayers = 2,
             player1 = 0,
@@ -71,7 +69,6 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         initialize();
         setDefaultValues();
         setPlayerNames(p1Name, p2Name);
-        updateWidget();
     }
 
     private void initialize() {
@@ -134,6 +131,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         currentPlayer = player1;
         currentThrow = firstThrow;
         playerNamesView[player1].setTextColor(Color.RED);
+        setWidgetValues();
     }
 
     @Override
