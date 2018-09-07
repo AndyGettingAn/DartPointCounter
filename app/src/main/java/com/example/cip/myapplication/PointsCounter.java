@@ -280,7 +280,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         DartDbHandler db = new DartDbHandler(this);
         String title = playerNames[player1].toString() + " gegen " + playerNames[player2].toString() + "\n  am "  + getDate();
         String content = playerNames[0] + "/" + counter_100[0] + "/" + counter_160[0] + "/" + counter_180[0] + "/" + average[0] + "/" + highestThrow[0] +
-                "+" + playerNames[1] + "/" + counter_100[1] + "/" + counter_160[1] + "/" + counter_180[1] + "/" + average[1] + "/" + highestThrow[1] + "+" + currentPlayer;
+                "/" + playerNames[1] + "/" + counter_100[1] + "/" + counter_160[1] + "/" + counter_180[1] + "/" + average[1] + "/" + highestThrow[1] + "/" + currentPlayer;
         GameHistory history =  new GameHistory(title,content);
         db.addNote(history);
     }

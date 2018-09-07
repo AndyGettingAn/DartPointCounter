@@ -33,12 +33,9 @@ public class Statistic extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), list.get(position).getNoteContent(), Toast.LENGTH_LONG).show();
                 String gameTitle = list.get(position).getNoteTitle();
                 String gameContent = list.get(position).getNoteContent();
                 int gameId = list.get(position).getNoteId();
-                Bundle bundle = new Bundle();
-
                 FragmentManager fm = getSupportFragmentManager();
                 GameHistoryFragment editNameDialogFragment = GameHistoryFragment.newInstance(gameTitle,gameContent,gameId);
                 editNameDialogFragment.show(fm, "fragment_edit_name");

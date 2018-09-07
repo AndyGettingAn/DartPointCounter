@@ -18,6 +18,11 @@
     <string name="appwidget_text">Dartzähler Widget</string>
     <string name="add_widget">Add widget</string>
 
+    <string name="fragment_average">Average</string>
+    <string name="fragment_counter100">>100</string>
+    <string name="fragment_counter160">>160</string>
+    <string name="fragment_counter180">>180</string>
+    <string name="fragment_highesthrow">Highest Throw</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
