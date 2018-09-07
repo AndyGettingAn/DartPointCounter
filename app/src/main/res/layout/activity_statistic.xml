@@ -9,13 +9,459 @@
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Statistik"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0p" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_border">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/currentP1Statistic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Spieler 1"
+                android:layout_weight="1"
+                android:textSize="25sp"/>
+
+            <TextView
+                android:id="@+id/currentP2Statistic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Spieler 2"
+                android:layout_weight="1"
+                android:textSize="25sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/currentAvg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Average"
+                android:layout_weight="1"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/currentP1Avg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/currentP2Avg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/current100"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="100+"
+                android:layout_weight="1"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/currentP1100"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/currentP2100"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/current160"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="160+"
+                android:layout_weight="1"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/currentP1160"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/currentP2160"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/current180"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="180+"
+                android:layout_weight="1"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/currentP1180"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/currentP2180"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/currentHigh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Highest Throw"
+                android:layout_weight="1"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/currentP1High"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/currentP2High"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_border">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/lastP1Statistic"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Spieler 1"
+                    android:layout_weight="1"
+                    android:textSize="25sp"/>
+
+                <TextView
+                    android:id="@+id/lastP2Statistic"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Spieler 2"
+                    android:layout_weight="1"
+                    android:textSize="25sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/lastAvg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Average"
+                    android:layout_weight="1"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/lastP1Avg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:id="@+id/lastP2Avg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/last100"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="100+"
+                    android:layout_weight="1"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/lastP1100"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:id="@+id/lastP2100"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/last160"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="160+"
+                    android:layout_weight="1"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/lastP1160"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:id="@+id/lastP2160"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/last180"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="180+"
+                    android:layout_weight="1"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/lastP1180"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:id="@+id/lastP2180"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/lastHigh"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Highest Throw"
+                    android:layout_weight="1"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/lastP1High"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:id="@+id/lastP2High"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
+
+
