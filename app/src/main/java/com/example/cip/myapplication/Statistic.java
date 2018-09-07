@@ -1,17 +1,12 @@
 package com.example.cip.myapplication;
 
-import android.provider.ContactsContract;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -30,12 +25,23 @@ public class Statistic extends AppCompatActivity {
         setContentView(R.layout.activity_statistic);
         listView = (ListView) findViewById(R.id.listView);
         DartDbHandler db = new DartDbHandler(this);
-        //db.createDefaultNotesIfNeed();
-        List<GameHistory> list = db.getAllNotes();
+        final List<GameHistory> list = db.getAllNotes();
         this.noteList.addAll(list);
         this.listViewAdapter = new ArrayAdapter<GameHistory>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, this.noteList);
         this.listView.setAdapter(this.listViewAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), list.get(position).getNoteContent(), Toast.LENGTH_LONG).show();
+                String gameTitle = list.get(position).getNoteTitle();
+                String gameContent = list.get(position).getNoteContent();
+                int gameId = list.get(position).getNoteId();
+                    FragmentManager fm = getSupportFragmentManager();
+                    GameHistoryFragment editNameDialogFragment = GameHistoryFragment.newInstance("Spielinformationen");
+                    editNameDialogFragment.show(fm, "fragment_edit_name");
+            }
+        });
         //registerForContextMenu(this.listView);
     }
 

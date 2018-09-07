@@ -150,7 +150,6 @@ public class DartDbHandler extends SQLiteOpenHelper {
         // return count
         return count;
     }
-
 }
 /*
     private static final int DATABASE_VERSION = 1;
