@@ -37,9 +37,12 @@ public class Statistic extends AppCompatActivity {
                 String gameTitle = list.get(position).getNoteTitle();
                 String gameContent = list.get(position).getNoteContent();
                 int gameId = list.get(position).getNoteId();
-                    FragmentManager fm = getSupportFragmentManager();
-                    GameHistoryFragment editNameDialogFragment = GameHistoryFragment.newInstance("Spielinformationen");
-                    editNameDialogFragment.show(fm, "fragment_edit_name");
+                Bundle bundle = new Bundle();
+
+                FragmentManager fm = getSupportFragmentManager();
+                GameHistoryFragment editNameDialogFragment = GameHistoryFragment.newInstance(gameTitle,gameContent,gameId);
+                editNameDialogFragment.show(fm, "fragment_edit_name");
+
             }
         });
         //registerForContextMenu(this.listView);

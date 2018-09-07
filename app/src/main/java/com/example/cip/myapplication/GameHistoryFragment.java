@@ -11,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class GameHistoryFragment extends DialogFragment {
-    private EditText mEditText;
+    private TextView Title, Content, ID;
+
 
 
 
@@ -21,12 +23,14 @@ public class GameHistoryFragment extends DialogFragment {
     }
 
 
-    public static GameHistoryFragment newInstance(String title) {
-        GameHistoryFragment frag = new GameHistoryFragment();
-        Bundle args = new Bundle();
-        args.putString("title", title);
-        frag.setArguments(args);
-        return frag;
+    public static GameHistoryFragment newInstance(String gameTitle, String gameContent, int gameId) {
+        GameHistoryFragment fragment = new GameHistoryFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("gameTitle",gameTitle);
+        bundle.putString("gameContent",gameContent);
+        bundle.putInt("gameId",gameId);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
@@ -37,10 +41,13 @@ public class GameHistoryFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mEditText = (EditText) view.findViewById(R.id.txt_your_name);
-        String title = getArguments().getString("title", "Enter Name");
-        getDialog().setTitle(title);
-        mEditText.requestFocus();
+        Title = (TextView) view.findViewById(R.id.textView5);
+        Content = (TextView) view.findViewById(R.id.textView6);
+        ID = (TextView) view.findViewById(R.id.textView7);
+        Title.setText(getArguments().getString("gameTitle", "Title"));
+        Content.setText(getArguments().getString("gameContent", "Content"));
+        ID.setText(String.valueOf(getArguments().getInt("gameId", 0)));
+        getDialog().setTitle("Info");
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 }
