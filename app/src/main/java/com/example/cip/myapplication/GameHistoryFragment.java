@@ -69,7 +69,7 @@ public class GameHistoryFragment extends DialogFragment {
     }
 
     private void setFragmentContent(String[] content, String gameId){
-        game_Id.setText(gameId);
+        game_Id.setText("GameID: " + gameId);
         p1Name.setText(content[0]);
         p1counter100.setText(content[1]);
         p1counter160.setText(content[2]);
