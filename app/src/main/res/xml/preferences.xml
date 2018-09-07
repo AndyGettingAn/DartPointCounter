@@ -22,4 +22,5 @@
         android:title="Spielvariante"
         android:summaryOn="501"
         android:summaryOff="301"/>
+    <Preference android:layout="@layout/delete_button" android:key="delete_Button"></Preference>
 </PreferenceScreen>
