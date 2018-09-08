@@ -12,6 +12,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="108dp"
+        android:contentDescription="@string/app_name"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_launcher"
         android:layout_weight="0.54" />

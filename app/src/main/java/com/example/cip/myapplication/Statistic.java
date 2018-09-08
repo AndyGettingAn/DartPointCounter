@@ -8,27 +8,29 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+<<<<<<< HEAD
 
+=======
+>>>>>>> ba8e0d9801a47849d56619d565e03755cc9b5477
 import java.util.ArrayList;
 import java.util.List;
 
 public class Statistic extends AppCompatActivity {
 
-    private ListView listView;
-    private final List<GameHistory> noteList = new ArrayList<GameHistory>();
+    private final List<GameHistory> noteList = new ArrayList<>();
     private ArrayAdapter<GameHistory> listViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistic);
-        listView = (ListView) findViewById(R.id.listView);
+        ListView listView = (ListView) findViewById(R.id.listView);
         DartDbHandler db = new DartDbHandler(this);
         final List<GameHistory> list = db.getAllNotes();
         this.noteList.addAll(list);
-        this.listViewAdapter = new ArrayAdapter<GameHistory>(this,
-                R.layout.custom_listview_layout , android.R.id.text1, this.noteList);
-        this.listView.setAdapter(this.listViewAdapter);
+        this.listViewAdapter = new ArrayAdapter<>(this,
+                R.layout.custom_listview_layout, android.R.id.text1, this.noteList);
+        listView.setAdapter(this.listViewAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -36,8 +38,8 @@ public class Statistic extends AppCompatActivity {
                 String gameContent = list.get(position).getNoteContent();
                 int gameId = list.get(position).getNoteId();
                 FragmentManager fm = getSupportFragmentManager();
-                GameHistoryFragment editNameDialogFragment = GameHistoryFragment.newInstance(gameTitle, gameContent, gameId);
-                editNameDialogFragment.show(fm, "fragment_edit_name");
+                GameHistoryFragment historyFragment = GameHistoryFragment.newInstance(gameTitle, gameContent, gameId);
+                historyFragment.show(fm, "fragment_game_history");
 
             }
         });

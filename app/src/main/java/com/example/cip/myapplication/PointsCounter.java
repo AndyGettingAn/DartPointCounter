@@ -18,6 +18,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Locale;
 
 public class PointsCounter extends AppCompatActivity implements View.OnClickListener{
 
@@ -28,20 +29,14 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             DARTS_PER_TURN = 3,
             FIRST_THROW = 0,
             SECOND_THROW = 1,
-            THIRD_THROW = 2,
-            MAX_DARTPOINTS_SET = 180,
-            MAX_DARTPOINTS = 60,
-            MAX_DARTPOINTS_LENGTH = 2;
-    //Array mit Länge 2: Feld 0: Spieler 1, Feld 1: Spieler 2
+            THIRD_THROW = 2;
     private int[] gameState = new int[NUMBER_OF_PLAYERS],
             sets = new int[NUMBER_OF_PLAYERS],
             counter_100 = new int[NUMBER_OF_PLAYERS],
             counter_160 = new int[NUMBER_OF_PLAYERS],
             counter_180 = new int[NUMBER_OF_PLAYERS],
             highestThrow = new int[NUMBER_OF_PLAYERS];
-    private int startPoints;
-    private int currentPlayer;
-    private int currentThrow;
+    private int startPoints, currentPlayer, currentThrow;
     private double[] average = new double[NUMBER_OF_PLAYERS];
     private String [] playerNames = new String [NUMBER_OF_PLAYERS];
     private TextView setsView[] = new TextView[NUMBER_OF_PLAYERS],
@@ -50,13 +45,9 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             playerNamesView [] = new TextView[NUMBER_OF_PLAYERS],
             inputPoints[] = new TextView[DARTS_PER_TURN];
     private Button buttonFinish[] = new Button[NUMBER_OF_PLAYERS];
-
-
-    private final PointCounterWidget counter= new PointCounterWidget();
-
-
     private Boolean dartboardRequired,
             gameVariant;
+    private final PointCounterWidget counter= new PointCounterWidget();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +98,6 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         playerNamesView[PLAYER_2].setText(name2);
         playerNames[PLAYER_1] = name1;
         playerNames[PLAYER_2] = name2;
-
     }
 
     private void setDefaultValues() {
@@ -157,11 +147,11 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         }
     }
 
-
     private void updateInput(String inputValue) {
         String oldValue = inputPoints[currentThrow].getText().toString();
         String newValue = oldValue + inputValue;
-        if (newValue.length() <= MAX_DARTPOINTS_LENGTH) {
+        int maxDartpointsLength = 2;
+        if (newValue.length() <= maxDartpointsLength) {
             inputPoints[currentThrow].setText(newValue);
         }
     }
@@ -180,28 +170,15 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         String inputValue1 = inputPoints[FIRST_THROW].getText().toString();
         String inputValue2 = inputPoints[SECOND_THROW].getText().toString();
         String inputValue3 = inputPoints[THIRD_THROW].getText().toString();
-        if (inputValue1 == ""){
-            inputValue1 = "0";
-        }
-        if (inputValue2 == ""){
-            inputValue2 = "0";
-        }
-        if (inputValue3 == ""){
-            inputValue3 = "0";
-        }
-       /* int inputPoints1 = Integer.parseInt(inputValue1);
-        int inputPoints2 = Integer.parseInt(inputValue2);
-        int inputPoints3 = Integer.parseInt(inputValue3);
-        int sum = inputPoints1+inputPoints2+inputPoints3;*/
         int inputPoints1 = getInputPoints(inputValue1, "1");
         int inputPoints2 = getInputPoints(inputValue2, "2");
         int inputPoints3 = getInputPoints(inputValue3, "3");
         int sum = inputPoints1+inputPoints2+inputPoints3;
         checkValues(inputPoints1,inputPoints2,inputPoints3);
-        if (gameState[currentPlayer]-sum >= 0 && sum <= MAX_DARTPOINTS_SET) {
+        if (gameState[currentPlayer]-sum >= 0) {
             gameState[currentPlayer] -= sum;
         }else {
-            Toast.makeText(PointsCounter.this, "Überworfen oder maximale erreichbare Punktzahl überschritten", Toast.LENGTH_LONG).show();
+            Toast.makeText(PointsCounter.this, "Überworfen", Toast.LENGTH_LONG).show();
         }
         sets[currentPlayer]++;
         average[currentPlayer] = (startPoints - gameState[currentPlayer]) / (sets[currentPlayer] * DARTS_PER_TURN);
@@ -212,12 +189,17 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     }
 
     private int getInputPoints(String pointsValue, String inputDart) {
-        int points = Integer.parseInt(pointsValue);
-        if (points > MAX_DARTPOINTS){
-            Toast.makeText(PointsCounter.this, "Dart " + inputDart +" hat die maximale erreichbare Dart-Punktzahl überschritten", Toast.LENGTH_LONG).show();
+        if (pointsValue == ""){
             return 0;
         }else {
-            return points;
+            int points = Integer.parseInt(pointsValue);
+            int maxDartpoints = 60;
+            if (points > maxDartpoints) {
+                Toast.makeText(PointsCounter.this, "Dart " + inputDart + " hat die maximale erreichbare Dart-Punktzahl überschritten", Toast.LENGTH_LONG).show();
+                return 0;
+            } else {
+                return points;
+            }
         }
     }
 
@@ -299,7 +281,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
 
     private void setGameHistory(){
         DartDbHandler db = new DartDbHandler(this);
-        String title = playerNames[PLAYER_1].toString() + " gegen " + playerNames[PLAYER_2].toString() + "\n  am "  + getDate();
+        String title = playerNames[PLAYER_1] + " gegen " + playerNames[PLAYER_2] + "\n  am "  + getDate();
         String content = playerNames[0] + "/" + counter_100[0] + "/" + counter_160[0] + "/" + counter_180[0] + "/" + average[0] + "/" + highestThrow[0] +
                 "/" + playerNames[1] + "/" + counter_100[1] + "/" + counter_160[1] + "/" + counter_180[1] + "/" + average[1] + "/" + highestThrow[1] + "/" + currentPlayer;
         GameHistory history =  new GameHistory(title,content);
@@ -307,7 +289,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     }
 
     private String getDate(){
-       return new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss").format(new Date());
+       return new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss", Locale.GERMANY).format(new Date());
     }
 }
 
