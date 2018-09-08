@@ -10,8 +10,6 @@ public class Settings extends AppCompatActivity {
                             KEY_PLAYER2_NAME = "p2_name",
                             KEY_GAME_VARIANT = "game_preference";
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +17,4 @@ public class Settings extends AppCompatActivity {
                 .replace(android.R.id.content, new SettingsFragment())
                 .commit();
     }
-
-
-
 }
