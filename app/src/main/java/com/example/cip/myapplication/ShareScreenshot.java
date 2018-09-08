@@ -1,9 +1,11 @@
 package com.example.cip.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.View;
 import java.io.File;
@@ -14,14 +16,16 @@ import java.io.IOException;
 public class ShareScreenshot {
     private File imagePath;
     public final String SHARE_MESSAGE = "Teilen über";
+    private static final String TAG = ShareScreenshot.class.getSimpleName();
 
     public ShareScreenshot() {
     }
 
-    public Intent  getShareIntent(View rootView){
+    public Intent  getShareIntent(View rootView, Context context){
+
         Bitmap bitmap = takeScreenshot(rootView);
         saveBitmap(bitmap);
-        return shareIt();
+        return shareIt(context);
     }
 
     private Bitmap takeScreenshot(View rootView) {
@@ -30,7 +34,7 @@ public class ShareScreenshot {
     }
 
     private void saveBitmap(Bitmap bitmap) {
-        imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
+        imagePath = new File(Environment.getExternalStorageDirectory()+File.separator + "/screenshot.png");
         FileOutputStream fos;
         try {
             fos = new FileOutputStream(imagePath);
@@ -44,10 +48,11 @@ public class ShareScreenshot {
         }
     }
 
-    private Intent shareIt() {
-        Uri uri = Uri.fromFile(imagePath);
+    private Intent shareIt(Context context) {
+        Uri uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider",imagePath);
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("image/*");
+        sharingIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
         return sharingIntent;
     }
