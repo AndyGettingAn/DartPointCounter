@@ -9,10 +9,8 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,35 +21,38 @@ import java.util.Date;
 
 public class PointsCounter extends AppCompatActivity implements View.OnClickListener{
 
-    private final int finishModus = 170,
-            numberOfPlayers = 2,
-            player1 = 0,
-            player2 = 1,
-            dartsPerTurn = 3,
-            firstThrow = 0,
-            secondThrow = 1,
-            thirdThrow = 2;
+    private final int FINISH_MODUS = 170,
+            NUMBER_OF_PLAYERS = 2,
+            PLAYER_1 = 0,
+            PLAYER_2 = 1,
+            DARTS_PER_TURN = 3,
+            FIRST_THROW = 0,
+            SECOND_THROW = 1,
+            THIRD_THROW = 2,
+            MAX_DARTPOINTS_SET = 180,
+            MAX_DARTPOINTS = 60,
+            MAX_DARTPOINTS_LENGTH = 2;
     //Array mit Länge 2: Feld 0: Spieler 1, Feld 1: Spieler 2
-    private int[] gameState = new int[numberOfPlayers],
-            sets = new int[numberOfPlayers],
-            counter_100 = new int[numberOfPlayers],
-            counter_160 = new int[numberOfPlayers],
-            counter_180 = new int[numberOfPlayers],
-            highestThrow = new int[numberOfPlayers];
-    int startPoints,
-            currentPlayer,
-            currentThrow;
-    private double[] average = new double[numberOfPlayers];
-    private String [] playerNames = new String [numberOfPlayers];
-    private TextView setsView[] = new TextView[numberOfPlayers],
-            averageView[] = new TextView[numberOfPlayers],
-            gameStateView[] = new TextView[numberOfPlayers],
-            playerNamesView [] = new TextView[numberOfPlayers],
-            inputPoints[] = new TextView[dartsPerTurn];
-    private Button buttonFinish[] = new Button[numberOfPlayers];
+    private int[] gameState = new int[NUMBER_OF_PLAYERS],
+            sets = new int[NUMBER_OF_PLAYERS],
+            counter_100 = new int[NUMBER_OF_PLAYERS],
+            counter_160 = new int[NUMBER_OF_PLAYERS],
+            counter_180 = new int[NUMBER_OF_PLAYERS],
+            highestThrow = new int[NUMBER_OF_PLAYERS];
+    private int startPoints;
+    private int currentPlayer;
+    private int currentThrow;
+    private double[] average = new double[NUMBER_OF_PLAYERS];
+    private String [] playerNames = new String [NUMBER_OF_PLAYERS];
+    private TextView setsView[] = new TextView[NUMBER_OF_PLAYERS],
+            averageView[] = new TextView[NUMBER_OF_PLAYERS],
+            gameStateView[] = new TextView[NUMBER_OF_PLAYERS],
+            playerNamesView [] = new TextView[NUMBER_OF_PLAYERS],
+            inputPoints[] = new TextView[DARTS_PER_TURN];
+    private Button buttonFinish[] = new Button[NUMBER_OF_PLAYERS];
 
 
-    private PointCounterWidget counter= new PointCounterWidget();
+    private final PointCounterWidget counter= new PointCounterWidget();
 
 
     private Boolean dartboardRequired,
@@ -72,21 +73,21 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     }
 
     private void initialize() {
-        inputPoints[firstThrow] = (TextView) findViewById(R.id.player_throw_points1);
-        inputPoints[secondThrow] = (TextView) findViewById(R.id.player_throw_points2);
-        inputPoints[thirdThrow] = (TextView) findViewById(R.id.player_throw_points3);
-        setsView[player1] = (TextView) findViewById(R.id.player1Set);
-        setsView[player2] = (TextView) findViewById(R.id.player2Set);
-        averageView[player1] = (TextView) findViewById(R.id.player1Average);
-        averageView[player2] = (TextView) findViewById(R.id.player2Average);
-        buttonFinish[player1] = (Button) findViewById(R.id.player1Finish);
-        buttonFinish[player2] = (Button) findViewById(R.id.player2Finish);
-        gameStateView[player1] = (TextView) findViewById(R.id.player1GameState);
-        gameStateView[player2] = (TextView) findViewById(R.id.player2GameState);
-        playerNamesView[player1] = (TextView) findViewById(R.id.playerName1);
-        playerNamesView[player2] = (TextView) findViewById(R.id.playerName2);
-        buttonFinish[player1].setOnClickListener(this);
-        buttonFinish[player2].setOnClickListener(this);
+        inputPoints[FIRST_THROW] = (TextView) findViewById(R.id.player_throw_points1);
+        inputPoints[SECOND_THROW] = (TextView) findViewById(R.id.player_throw_points2);
+        inputPoints[THIRD_THROW] = (TextView) findViewById(R.id.player_throw_points3);
+        setsView[PLAYER_1] = (TextView) findViewById(R.id.player1Set);
+        setsView[PLAYER_2] = (TextView) findViewById(R.id.player2Set);
+        averageView[PLAYER_1] = (TextView) findViewById(R.id.player1Average);
+        averageView[PLAYER_2] = (TextView) findViewById(R.id.player2Average);
+        buttonFinish[PLAYER_1] = (Button) findViewById(R.id.player1Finish);
+        buttonFinish[PLAYER_2] = (Button) findViewById(R.id.player2Finish);
+        gameStateView[PLAYER_1] = (TextView) findViewById(R.id.player1GameState);
+        gameStateView[PLAYER_2] = (TextView) findViewById(R.id.player2GameState);
+        playerNamesView[PLAYER_1] = (TextView) findViewById(R.id.playerName1);
+        playerNamesView[PLAYER_2] = (TextView) findViewById(R.id.playerName2);
+        buttonFinish[PLAYER_1].setOnClickListener(this);
+        buttonFinish[PLAYER_2].setOnClickListener(this);
         findViewById(R.id.buttonOK).setOnClickListener(this);
         findViewById(R.id.button0).setOnClickListener(this);
         findViewById(R.id.button1).setOnClickListener(this);
@@ -102,10 +103,10 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     }
 
     private void setPlayerNames(String name1, String name2) {
-        playerNamesView[player1].setText(name1);
-        playerNamesView[player2].setText(name2);
-        playerNames[player1] = name1;
-        playerNames[player2] = name2;
+        playerNamesView[PLAYER_1].setText(name1);
+        playerNamesView[PLAYER_2].setText(name2);
+        playerNames[PLAYER_1] = name1;
+        playerNames[PLAYER_2] = name2;
 
     }
 
@@ -115,7 +116,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         }else {
             startPoints = 301;
         }
-        for (int player = 0; player < numberOfPlayers; player++) {
+        for (int player = 0; player < NUMBER_OF_PLAYERS; player++) {
             setsView[player].setText("Sets: 0");
             averageView[player].setText("Durchschnitt: 0");
             buttonFinish[player].setText("");
@@ -123,14 +124,13 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             gameState[player] = startPoints;
             sets[player] = 0;
             average[player] = 0;
-            // playerNames[player] = "";
         }
-        for (int dart = 0; dart < dartsPerTurn; dart++) {
+        for (int dart = 0; dart < DARTS_PER_TURN; dart++) {
             inputPoints[dart].setText("");
         }
-        currentPlayer = player1;
-        currentThrow = firstThrow;
-        playerNamesView[player1].setTextColor(Color.RED);
+        currentPlayer = PLAYER_1;
+        currentThrow = FIRST_THROW;
+        playerNamesView[PLAYER_1].setTextColor(Color.RED);
         setWidgetValues();
     }
 
@@ -142,7 +142,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             String buttonValue = pressedButton.getText().toString();
             updateInput(buttonValue);
         } else if (id == R.id.buttonOK) {
-            if (currentThrow < dartsPerTurn-1) {
+            if (currentThrow < DARTS_PER_TURN-1) {
                 currentThrow++;
             } else {
                 updateGameState();
@@ -151,21 +151,24 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         } else if (id == R.id.buttonClear) {
             clearInput();
         } else if (id == R.id.player1Finish) {
-            openPlayerDartboard(player1);
+            openPlayerDartboard(PLAYER_1);
         } else if (id == R.id.player2Finish) {
-            openPlayerDartboard(player2);
+            openPlayerDartboard(PLAYER_2);
         }
     }
+
 
     private void updateInput(String inputValue) {
         String oldValue = inputPoints[currentThrow].getText().toString();
         String newValue = oldValue + inputValue;
-        inputPoints[currentThrow].setText(newValue);
+        if (newValue.length() <= MAX_DARTPOINTS_LENGTH) {
+            inputPoints[currentThrow].setText(newValue);
+        }
     }
 
     private void clearInputAll() {
-        for (int thow = 0; thow < dartsPerTurn; thow++) {
-            inputPoints[thow].setText("");
+        for (int dart = 0; dart < DARTS_PER_TURN; dart++) {
+            inputPoints[dart].setText("");
         }
     }
 
@@ -174,41 +177,62 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     }
 
     private void updateGameState(){
-        //Spielstände werden nicht negativ -> Überworfen. Darts zählen trotzdem
-        String inputValue1 = inputPoints[firstThrow].getText().toString();
-        String inputValue2 = inputPoints[secondThrow].getText().toString();
-        String inputValue3 = inputPoints[thirdThrow].getText().toString();
-        if (inputValue1 == ""){inputValue1 = "0";}
-        if (inputValue2 == ""){inputValue2 = "0";}
-        if (inputValue3 == ""){inputValue3 = "0";}
-        int inputPoints1 = Integer.parseInt(inputValue1);
+        String inputValue1 = inputPoints[FIRST_THROW].getText().toString();
+        String inputValue2 = inputPoints[SECOND_THROW].getText().toString();
+        String inputValue3 = inputPoints[THIRD_THROW].getText().toString();
+        if (inputValue1 == ""){
+            inputValue1 = "0";
+        }
+        if (inputValue2 == ""){
+            inputValue2 = "0";
+        }
+        if (inputValue3 == ""){
+            inputValue3 = "0";
+        }
+       /* int inputPoints1 = Integer.parseInt(inputValue1);
         int inputPoints2 = Integer.parseInt(inputValue2);
         int inputPoints3 = Integer.parseInt(inputValue3);
+        int sum = inputPoints1+inputPoints2+inputPoints3;*/
+        int inputPoints1 = getInputPoints(inputValue1, "1");
+        int inputPoints2 = getInputPoints(inputValue2, "2");
+        int inputPoints3 = getInputPoints(inputValue3, "3");
         int sum = inputPoints1+inputPoints2+inputPoints3;
         checkValues(inputPoints1,inputPoints2,inputPoints3);
-        if (gameState[currentPlayer]-sum >= 0) {
+        if (gameState[currentPlayer]-sum >= 0 && sum <= MAX_DARTPOINTS_SET) {
             gameState[currentPlayer] -= sum;
+        }else {
+            Toast.makeText(PointsCounter.this, "Überworfen oder maximale erreichbare Punktzahl überschritten", Toast.LENGTH_LONG).show();
         }
         sets[currentPlayer]++;
-        average[currentPlayer] = (startPoints - gameState[currentPlayer]) / (sets[currentPlayer] * dartsPerTurn);
+        average[currentPlayer] = (startPoints - gameState[currentPlayer]) / (sets[currentPlayer] * DARTS_PER_TURN);
         updateGameView();
         updateWidget();
         checkPlayerWin();
         playersChange();
     }
 
+    private int getInputPoints(String pointsValue, String inputDart) {
+        int points = Integer.parseInt(pointsValue);
+        if (points > MAX_DARTPOINTS){
+            Toast.makeText(PointsCounter.this, "Dart " + inputDart +" hat die maximale erreichbare Dart-Punktzahl überschritten", Toast.LENGTH_LONG).show();
+            return 0;
+        }else {
+            return points;
+        }
+    }
+
     private void checkValues(int input1,int input2,int input3){
         int[] inputs = new int[]{input1,input2,input3};
-        for(int i = 0; i < inputs.length; i++){
-            if(inputs[i] == 180){
+        for (int input : inputs) {
+            if (input == 180) {
                 counter_180[currentPlayer]++;
-            }else if(inputs[i] >= 160){
+            } else if (input >= 160) {
                 counter_160[currentPlayer]++;
-            }else if(inputs[i] >= 100){
+            } else if (input >= 100) {
                 counter_100[currentPlayer]++;
             }
-            if (inputs[i] > highestThrow[currentPlayer]){
-                highestThrow[currentPlayer] = inputs[i];
+            if (input > highestThrow[currentPlayer]) {
+                highestThrow[currentPlayer] = input;
             }
         }
     }
@@ -216,7 +240,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     private void updateGameView() {
         averageView[currentPlayer].setText("Durchschnitt: "+ average[currentPlayer]);
         setsView[currentPlayer].setText("Set: "+ sets[currentPlayer]);
-        if (gameState[currentPlayer]<= finishModus && gameState[currentPlayer] != 0 && dartboardRequired){
+        if (gameState[currentPlayer]<= FINISH_MODUS && gameState[currentPlayer] != 0 && dartboardRequired){
             openPlayerDartboard(currentPlayer);
         }
         gameStateView[currentPlayer].setText(String.valueOf(gameState[currentPlayer]));
@@ -241,17 +265,17 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             finish();
         }
     }
-    //Spielerwechsel
+
     private void playersChange() {
         currentPlayer = getOtherPlayer();
         playerNamesView[currentPlayer].setTextColor(Color.RED);
         playerNamesView[getOtherPlayer()].setTextColor(Color.BLACK);
-        currentThrow = firstThrow;
+        currentThrow = FIRST_THROW;
     }
 
     private void openPlayerDartboard(int player){
         Intent intent = new Intent(PointsCounter.this, Dartboard.class);
-        if (gameState[player]<= finishModus && FinishValues.getFinish(gameState[player])[0] != ""){
+        if (gameState[player]<= FINISH_MODUS && FinishValues.getFinish(gameState[player])[0] != ""){
             String [] finishValues = FinishValues.getFinish(gameState[player]);
             buttonFinish[player].setText(Arrays.toString(finishValues));
             intent.putExtra("finishValues", finishValues);
@@ -266,17 +290,16 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     }
 
     private int getOtherPlayer(){
-        if (currentPlayer == player1){
-            return player2;
+        if (currentPlayer == PLAYER_1){
+            return PLAYER_2;
         }else {
-            return player1;
+            return PLAYER_1;
         }
     }
 
-    //CONTEXT fehlt noch: Durchschnitt ect. und Teilen
     private void setGameHistory(){
         DartDbHandler db = new DartDbHandler(this);
-        String title = playerNames[player1].toString() + " gegen " + playerNames[player2].toString() + "\n  am "  + getDate();
+        String title = playerNames[PLAYER_1].toString() + " gegen " + playerNames[PLAYER_2].toString() + "\n  am "  + getDate();
         String content = playerNames[0] + "/" + counter_100[0] + "/" + counter_160[0] + "/" + counter_180[0] + "/" + average[0] + "/" + highestThrow[0] +
                 "/" + playerNames[1] + "/" + counter_100[1] + "/" + counter_160[1] + "/" + counter_180[1] + "/" + average[1] + "/" + highestThrow[1] + "/" + currentPlayer;
         GameHistory history =  new GameHistory(title,content);
@@ -284,9 +307,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
     }
 
     private String getDate(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss");
-        String currentDateandTime = sdf.format(new Date());
-        return currentDateandTime;
+       return new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss").format(new Date());
     }
 }
 
