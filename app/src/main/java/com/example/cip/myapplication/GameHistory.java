@@ -29,7 +29,7 @@ public class GameHistory implements Serializable {
     public void setNoteId(int noteId) {
         this.noteId = noteId;
     }
-    
+
     public String getNoteTitle() {
         return noteTitle;
     }

@@ -14,7 +14,7 @@ import android.widget.TextView;
 public class GameHistoryFragment extends DialogFragment implements View.OnClickListener {
     private TextView game_Id, p1Name, p1average, p1counter100, p1counter160, p1counter180, p1highestthrow,
             p2Name, p2average, p2counter100, p2counter160, p2counter180, p2highestthrow;
-    private int Winnercolor = Color.rgb(255, 255, 0);
+    private final int WINNER_COLOR = Color.rgb(255, 255, 0);
     private View rootView;
     private String gameId;
 
@@ -82,9 +82,9 @@ public class GameHistoryFragment extends DialogFragment implements View.OnClickL
         p2average.setText(content[10]);
         p2highestthrow.setText(content[11]);
         if(Integer.parseInt(content[12]) == 0){
-            p1Name.setBackgroundColor(Winnercolor);
+            p1Name.setBackgroundColor(WINNER_COLOR);
         }else{
-            p2Name.setBackgroundColor(Winnercolor);
+            p2Name.setBackgroundColor(WINNER_COLOR);
         }
     }
 
