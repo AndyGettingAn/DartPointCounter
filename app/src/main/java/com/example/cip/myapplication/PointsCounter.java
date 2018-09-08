@@ -47,6 +47,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             inputPoints[] = new TextView[DARTS_PER_TURN];
     private Button buttonFinish[] = new Button[NUMBER_OF_PLAYERS];
     private Boolean dartboardRequired,
+            namesSet = false,
             gameVariant;
     private final PointCounterWidget counter= new PointCounterWidget();
 
@@ -59,12 +60,11 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         String p1Name = sharedPref.getString(Settings.KEY_PLAYER1_NAME, "Spieler 1");
         String p2Name = sharedPref.getString(Settings.KEY_PLAYER2_NAME, "Spieler 2");
         FragmentManager fm = getSupportFragmentManager();
-        CounterFragment counterFragment = CounterFragment.newInstance(p1Name,p2Name);
-        counterFragment.show(fm,"fragment_counter");
+        CounterFragment counterFragment = CounterFragment.newInstance(p1Name, p2Name);
+        counterFragment.show(fm, "fragment_counter");
         gameVariant = sharedPref.getBoolean(Settings.KEY_GAME_VARIANT, false);
         initialize();
         setDefaultValues();
-        setPlayerNames(p1Name, p2Name);
     }
 
     private void initialize() {
@@ -97,7 +97,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.buttonClear).setOnClickListener(this);
     }
 
-    private void setPlayerNames(String name1, String name2) {
+    public void setPlayerNames(String name1, String name2) {
         playerNamesView[PLAYER_1].setText(name1);
         playerNamesView[PLAYER_2].setText(name2);
         playerNames[PLAYER_1] = name1;
@@ -296,11 +296,14 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
        return new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss", Locale.GERMANY).format(new Date());
     }
 
-    public void restartActivity(String p1Name, String p2Name){
+    /*public void restartActivity(String p1Name, String p2Name){
         setPlayerNames(p1Name,p2Name);
+        namesSet = true;
         Intent intent = getIntent();
         finish();
         startActivity(intent);
     }
+    */
+
 }
 

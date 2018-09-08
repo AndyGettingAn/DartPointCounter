@@ -4,6 +4,7 @@ package com.example.cip.myapplication;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +37,8 @@ public class CounterFragment extends DialogFragment implements View.OnClickListe
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        EditText p1Name = (EditText) view.findViewById(R.id.frg_counter_p1);
-        EditText p2Name = (EditText) view.findViewById(R.id.frg_counter_p2);
+        p1Name = (EditText) view.findViewById(R.id.frg_counter_p1);
+        p2Name = (EditText) view.findViewById(R.id.frg_counter_p2);
         Button btn = (Button) view.findViewById(R.id.frg_counter_button);
         Bundle bundle = getArguments();
         p1Name.setText(bundle.getString("p1Name"));
@@ -49,7 +50,7 @@ public class CounterFragment extends DialogFragment implements View.OnClickListe
     public void onClick(View view) {
         p1Name_txt = p1Name.getText().toString();
         p2Name_txt = p2Name.getText().toString();
-        ((PointsCounter) getActivity()).restartActivity(p1Name_txt,p2Name_txt);
-
+        ((PointsCounter) getActivity()).setPlayerNames(p1Name_txt,p2Name_txt);
+        getFragmentManager().beginTransaction().remove(CounterFragment.this).commit();
     }
 }
