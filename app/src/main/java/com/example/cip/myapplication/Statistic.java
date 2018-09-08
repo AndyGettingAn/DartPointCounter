@@ -8,10 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-<<<<<<< HEAD
-
-=======
->>>>>>> ba8e0d9801a47849d56619d565e03755cc9b5477
 import java.util.ArrayList;
 import java.util.List;
 
