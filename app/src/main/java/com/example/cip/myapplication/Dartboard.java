@@ -44,7 +44,7 @@ public class Dartboard extends AppCompatActivity {
         private double startPoint = -FIELD_WIDTH / 2;
         private final int[] FIELD_POINTS = {6, 10, 15, 2, 17, 3, 19, 7, 16, 8, 11, 14, 9, 12, 5, 20, 1, 18, 4, 13};
         private String [] finishValues;
-        
+
         public myView(Context context, String [] finishValues) {
             super(context);
             this.finishValues = finishValues;

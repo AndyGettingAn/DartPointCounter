@@ -5,19 +5,17 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Button;
 import android.widget.RemoteViews;
 
 public class PointCounterWidget extends AppWidgetProvider {
 
-    private static int numberOfPlayers = 2;
+    private static final int NUMBER_OF_PLAYERS = 2;
+    private static String [] playerNames = new String [NUMBER_OF_PLAYERS];
+    private  static int []  gameState = new int[NUMBER_OF_PLAYERS],
+            sets = new int[NUMBER_OF_PLAYERS];
 
-    private static String [] playerNames = new String [numberOfPlayers];
-    private  static int []  gameState = new int[numberOfPlayers],
-            sets = new int[numberOfPlayers];
-
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+    private static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+                                        int appWidgetId) {
         int player1 = 0;
         int player2 = 1;
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.point_counter_widget);
@@ -48,15 +46,15 @@ public class PointCounterWidget extends AppWidgetProvider {
     public void onDisabled(Context context) {    }
 
     public void setGameState(int[]gameState) {
-        this.gameState = gameState;
+        PointCounterWidget.gameState = gameState;
     }
 
     public void setSets(int[] sets) {
-        this.sets = sets;
+        PointCounterWidget.sets = sets;
     }
 
     public void setPlayerNames(String[] playerNames) {
-        this.playerNames = playerNames;
+        PointCounterWidget.playerNames = playerNames;
     }
 }
 
