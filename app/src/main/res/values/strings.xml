@@ -29,5 +29,8 @@
     <string name="share_win">Erfolg teilen!</string>
     <string name="team_members">Andreas Filipuk, Hami Nguyen, Johanna Dangel</string>
     <string name="widget_to_counter">zum Dart-Punkte-Zähler</string>
+    <string name="fragment_counter_p1">Spieler 1</string>
+    <string name="fragment_counter_p2">Spieler 2</string>
+    <string name="fragment_counter_btn">Spielen!</string>
 
 </resources>

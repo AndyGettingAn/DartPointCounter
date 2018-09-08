@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
@@ -13,7 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.support.v4.app.FragmentManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -57,6 +58,9 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         dartboardRequired = sharedPref.getBoolean(Settings.KEY_DARTBOARD, false);
         String p1Name = sharedPref.getString(Settings.KEY_PLAYER1_NAME, "Spieler 1");
         String p2Name = sharedPref.getString(Settings.KEY_PLAYER2_NAME, "Spieler 2");
+        FragmentManager fm = getSupportFragmentManager();
+        CounterFragment counterFragment = CounterFragment.newInstance(p1Name,p2Name);
+        counterFragment.show(fm,"fragment_counter");
         gameVariant = sharedPref.getBoolean(Settings.KEY_GAME_VARIANT, false);
         initialize();
         setDefaultValues();
@@ -290,6 +294,13 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
 
     private String getDate(){
        return new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss", Locale.GERMANY).format(new Date());
+    }
+
+    public void restartActivity(String p1Name, String p2Name){
+        setPlayerNames(p1Name,p2Name);
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 }
 
