@@ -6,4 +6,7 @@
     <color name="colorWinner">#FFFF00</color>
     <color name="colorDarkGrey">#515151</color>
     <color name="colorBackgroundBrown">#dfd0bc</color>
+    <color name="colorLightGreen">#8cbf40</color>
+    <color name="colorLightRed">#b63c3c</color>
+    <color name="colorTextShadow">#7F000000</color>
 </resources>

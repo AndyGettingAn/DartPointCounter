@@ -1,13 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
    <!-- tools:context="com.example.cip.myapplication.MainActivity"
     tools:showIn="@layout/app_bar_main">-->
 
+
+   <ImageView
+       android:id="@+id/imageView5"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_margin="20dp"
+       android:layout_marginTop="16dp"
+       android:adjustViewBounds="true"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:srcCompat="@drawable/logo" />
+
+   <TextView
+       android:id="@+id/textView3"
+       android:layout_width="wrap_content"
+       android:layout_height="0dp"
+       android:layout_marginLeft="8dp"
+       android:layout_marginStart="8dp"
+       android:shadowColor="@color/colorTextShadow"
+       android:shadowDx="3"
+       android:shadowDy="3"
+       android:text="@string/main_text_punkte"
+       android:textAlignment="center"
+       android:textAllCaps="true"
+       android:textAppearance="@style/TextAppearance.AppCompat"
+       android:textColor="@color/colorLightGreen"
+       android:textSize="23sp"
+       android:textStyle="bold"
+       android:typeface="normal"
+       app:layout_constraintEnd_toEndOf="@+id/textView4"
+       app:layout_constraintHorizontal_bias="0.888"
+       app:layout_constraintStart_toStartOf="@+id/textView4"
+       app:layout_constraintTop_toTopOf="@+id/view" />
+
+   <TextView
+       android:id="@+id/textView4"
+       android:layout_width="wrap_content"
+       android:layout_height="96dp"
+       android:layout_marginEnd="8dp"
+       android:layout_marginLeft="8dp"
+       android:layout_marginRight="8dp"
+       android:layout_marginStart="8dp"
+       android:shadowColor="@color/colorTextShadow"
+       android:shadowDx="3"
+       android:shadowDy="3"
+       android:text="@string/main_text_dart"
+       android:textAlignment="center"
+       android:textAllCaps="true"
+       android:textAppearance="@style/TextAppearance.AppCompat"
+       android:textColor="@color/colorLightGreen"
+       android:textSize="70sp"
+       android:textStyle="bold"
+       android:typeface="normal"
+       app:layout_constraintEnd_toEndOf="@+id/imageView5"
+       app:layout_constraintStart_toStartOf="@+id/imageView5"
+       app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+   <View
+       android:id="@+id/view"
+       android:layout_width="0dp"
+       android:layout_height="4dp"
+       android:layout_gravity="center"
+       android:layout_marginBottom="12dp"
+       android:layout_marginEnd="8dp"
+       android:layout_marginLeft="8dp"
+       android:layout_marginRight="8dp"
+       android:layout_marginStart="8dp"
+       android:background="@color/colorLightRed"
+       app:layout_constraintBottom_toBottomOf="@+id/textView4"
+       app:layout_constraintEnd_toEndOf="@+id/textView4"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="@+id/textView4" />
 
 </android.support.constraint.ConstraintLayout>
