@@ -38,7 +38,7 @@ public class GameEnd extends AppCompatActivity implements View.OnClickListener {
         if (id == R.id.buttonShare){
             ShareScreenshot shareScreenshot = new ShareScreenshot();
             View rootView = findViewById(android.R.id.content).getRootView();
-            startActivity(Intent.createChooser(shareScreenshot.getShareIntent(rootView,this), shareScreenshot.SHARE_MESSAGE));
+            startActivity(Intent.createChooser(shareScreenshot.getShareIntent(rootView,this), shareScreenshot.getShareMesage()));
 
         }else if (id == R.id.buttonNewGame){
             Intent intent = new Intent(GameEnd.this, PointsCounter.class);

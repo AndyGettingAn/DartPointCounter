@@ -15,14 +15,12 @@ import java.io.IOException;
 
 public class ShareScreenshot {
     private File imagePath;
-    public final String SHARE_MESSAGE = "Teilen über";
-    private static final String TAG = ShareScreenshot.class.getSimpleName();
+    private final String SHARE_MESSAGE = "Teilen über";
 
     public ShareScreenshot() {
     }
 
     public Intent  getShareIntent(View rootView, Context context){
-
         Bitmap bitmap = takeScreenshot(rootView);
         saveBitmap(bitmap);
         return shareIt(context);
@@ -55,5 +53,9 @@ public class ShareScreenshot {
         sharingIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
         return sharingIntent;
+    }
+
+    public String getShareMesage() {
+        return SHARE_MESSAGE;
     }
 }

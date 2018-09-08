@@ -100,7 +100,7 @@ public class GameHistoryFragment extends DialogFragment implements View.OnClickL
             ((Statistic) getActivity()).dataChanged();
         }else if (id == R.id.fragment_button_share){
             ShareScreenshot shareScreenshot = new ShareScreenshot();
-            startActivity(Intent.createChooser(shareScreenshot.getShareIntent(rootView,this.getContext()), shareScreenshot.SHARE_MESSAGE));
+            startActivity(Intent.createChooser(shareScreenshot.getShareIntent(rootView,this.getContext()), shareScreenshot.getShareMesage()));
         }
     }
 }
