@@ -11,11 +11,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class ShareSceenshot {
+public class ShareScreenshot {
     private File imagePath;
     public final String SHARE_MESSAGE = "Teilen über";
 
-    public ShareSceenshot() {
+    public ShareScreenshot() {
     }
 
     public Intent  getShareIntent(View rootView){

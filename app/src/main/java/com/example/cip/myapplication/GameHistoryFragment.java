@@ -97,7 +97,7 @@ public class GameHistoryFragment extends DialogFragment implements View.OnClickL
             db.deleteNote(selectNote);
             ((Statistic) getActivity()).dataChanged();
         }else if (id == R.id.fragment_button_share){
-            ShareSceenshot shareScreenshot = new ShareSceenshot();
+            ShareScreenshot shareScreenshot = new ShareScreenshot();
             startActivity(Intent.createChooser(shareScreenshot.getShareIntent(rootView), shareScreenshot.SHARE_MESSAGE));
         }
     }

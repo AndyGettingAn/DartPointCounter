@@ -1,25 +1,16 @@
 package com.example.cip.myapplication;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.media.MediaPlayer;
-import android.net.Uri;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 public class GameEnd extends AppCompatActivity implements View.OnClickListener {
 
+    private final String [] CONGRATULATION = new String[]{"Herzlichen Glückwunsch! \n", " hat ", "\n in ", " Runden geschlagen"};
     private String winnerName;
     private String loserName;
     private int set;
@@ -45,7 +36,7 @@ public class GameEnd extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.buttonShare){
-            ShareSceenshot shareScreenshot = new ShareSceenshot();
+            ShareScreenshot shareScreenshot = new ShareScreenshot();
             View rootView = findViewById(android.R.id.content).getRootView();
             startActivity(Intent.createChooser(shareScreenshot.getShareIntent(rootView), shareScreenshot.SHARE_MESSAGE));
 
@@ -58,6 +49,6 @@ public class GameEnd extends AppCompatActivity implements View.OnClickListener {
 
     private void setText() {
         TextView text = (TextView) findViewById(R.id.textGameEnd);
-        text.setText("Herzlichen Glückwunsch! \n" + winnerName + " hat " + loserName + "\n in " + set + " Runden geschlagen");
+        text.setText(CONGRATULATION[0] + winnerName + CONGRATULATION[1] + loserName + CONGRATULATION[2] + set + CONGRATULATION[3]);
     }
 }
