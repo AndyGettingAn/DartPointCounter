@@ -10,7 +10,7 @@
     <TableLayout
 
         android:id="@+id/gameState"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
@@ -306,9 +306,9 @@
 
             <Button
                 android:layout_height="wrap_content"
-                android:id="@+id/buttonOK"
-                android:text="OK"
+                android:id="@+id/buttonClear"
                 android:layout_weight="1"
+                android:text="@string/button_clear"
                 android:layout_width="match_parent"
                 android:textSize="@dimen/keypad_text_size" />
 
@@ -322,11 +322,12 @@
 
             <Button
                 android:layout_height="wrap_content"
-                android:id="@+id/buttonClear"
+                android:id="@+id/buttonOK"
+                android:text="@string/button_ok"
                 android:layout_weight="1"
-                android:text="Clear"
                 android:layout_width="match_parent"
                 android:textSize="@dimen/keypad_text_size" />
+
         </TableRow>
     </TableLayout>
 

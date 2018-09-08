@@ -9,13 +9,11 @@ import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.View;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class ShareScreenshot {
+class ShareScreenshot {
     private File imagePath;
-    private final String SHARE_MESSAGE = "Teilen über";
 
     public ShareScreenshot() {
     }
@@ -39,8 +37,6 @@ public class ShareScreenshot {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.flush();
             fos.close();
-        } catch (FileNotFoundException e) {
-            Log.e("GREC", e.getMessage(), e);
         } catch (IOException e) {
             Log.e("GREC", e.getMessage(), e);
         }
@@ -56,6 +52,6 @@ public class ShareScreenshot {
     }
 
     public String getShareMesage() {
-        return SHARE_MESSAGE;
+        return "Teilen über";
     }
 }
