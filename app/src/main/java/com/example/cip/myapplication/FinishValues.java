@@ -2,16 +2,11 @@ package com.example.cip.myapplication;
 
 public class FinishValues {
 
-    public FinishValues() {
-    }
-
     public static String[] getFinish(int points){
         return calculateFinish(points);
     }
 
-    // für doppelten Auswurf
     private static String [] calculateFinish(int points) {
-        String noFinishMessage = "Kein Auswurf möglich";
         switch (points) {
             case 170:
                 return new String[]{"T20", "T20", "D25"};
