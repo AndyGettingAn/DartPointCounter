@@ -1,29 +1,25 @@
 package com.example.cip.myapplication;
 
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
-public class GameHistoryFragment extends DialogFragment {
+
+public class GameHistoryFragment extends DialogFragment implements View.OnClickListener {
     private TextView game_Id, p1Name, p1average, p1counter100, p1counter160, p1counter180, p1highestthrow,
             p2Name, p2average, p2counter100, p2counter160, p2counter180, p2highestthrow;
     private int Winnercolor = Color.rgb(255, 255, 0);
-
-
+    private View rootView;
+    private String gameId;
 
     public GameHistoryFragment() {
     }
-
 
     public static GameHistoryFragment newInstance(String gameTitle, String gameContent, int gameId) {
         GameHistoryFragment fragment = new GameHistoryFragment();
@@ -46,9 +42,9 @@ public class GameHistoryFragment extends DialogFragment {
         setFragmentViews(view);
         String Title = getArguments().getString("gameTitle", "Title");
         String Content = getArguments().getString("gameContent", "Content");
-        String gameId = String.valueOf(getArguments().getInt("gameId", 0));
+        gameId = String.valueOf(getArguments().getInt("gameId", 0));
         String[] splitedContent = Content.split("/");
-        setFragmentContent(splitedContent,gameId);
+        setFragmentContent(splitedContent);
         getDialog().setTitle(Title);
     }
 
@@ -66,9 +62,12 @@ public class GameHistoryFragment extends DialogFragment {
         p2counter160 = (TextView) view.findViewById(R.id.fragment_counter1602);
         p2counter180 = (TextView) view.findViewById(R.id.fragment_counter1802);
         p2highestthrow = (TextView) view.findViewById(R.id.fragment_highestthrow2);
+        rootView =  view.getRootView();
+        view.findViewById(R.id.fragment_button_delete).setOnClickListener(this);
+        view.findViewById(R.id.fragment_button_share).setOnClickListener(this);
     }
 
-    private void setFragmentContent(String[] content, String gameId){
+    private void setFragmentContent(String[] content){
         game_Id.setText("GameID: " + gameId);
         p1Name.setText(content[0]);
         p1counter100.setText(content[1]);
@@ -86,6 +85,20 @@ public class GameHistoryFragment extends DialogFragment {
             p1Name.setBackgroundColor(Winnercolor);
         }else{
             p2Name.setBackgroundColor(Winnercolor);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.fragment_button_delete){
+            DartDbHandler db = new DartDbHandler(getContext());
+            GameHistory selectNote = db.getNote(Integer.parseInt(gameId));
+            db.deleteNote(selectNote);
+            ((Statistic) getActivity()).dataChanged();
+        }else if (id == R.id.fragment_button_share){
+            ShareSceenshot shareScreenshot = new ShareSceenshot();
+            startActivity(Intent.createChooser(shareScreenshot.getShareIntent(rootView), shareScreenshot.SHARE_MESSAGE));
         }
     }
 }

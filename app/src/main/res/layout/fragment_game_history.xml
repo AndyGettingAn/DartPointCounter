@@ -249,6 +249,31 @@
 
             </TableRow>
 
+            <TableRow>
+                <Button
+                    android:id="@+id/fragment_button_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Eintrag teilen"
+                    tools:layout_editor_absoluteX="148dp"
+                    tools:layout_editor_absoluteY="173dp"
+                    android:layout_weight="3"/>
+
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/fragment_button_delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Eintrag löschen"
+                    tools:layout_editor_absoluteX="148dp"
+                    tools:layout_editor_absoluteY="173dp"
+                    android:layout_weight="3"/>
+            </TableRow>
+
         </TableLayout>
+
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
