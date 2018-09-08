@@ -26,7 +26,7 @@ public class Statistic extends AppCompatActivity {
         final List<GameHistory> list = db.getAllNotes();
         this.noteList.addAll(list);
         this.listViewAdapter = new ArrayAdapter<GameHistory>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, this.noteList);
+                R.layout.custom_listview_layout , android.R.id.text1, this.noteList);
         this.listView.setAdapter(this.listViewAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
