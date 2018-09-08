@@ -1,6 +1,6 @@
 package com.example.cip.myapplication;
 
-public class FinishValues {
+class FinishValues {
 
     public static String[] getFinish(int points){
         return calculateFinish(points);

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DartDbHandler extends SQLiteOpenHelper {
+class DartDbHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "History_Note_Manager";
@@ -54,9 +54,8 @@ public class DartDbHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
-        GameHistory note = new GameHistory(Integer.parseInt(cursor.getString(0)),
+        return new GameHistory(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1), cursor.getString(2));
-        return note;
     }
 
     public List<GameHistory> getAllNotes() {

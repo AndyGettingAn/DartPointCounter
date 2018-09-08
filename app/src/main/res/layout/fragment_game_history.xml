@@ -257,20 +257,25 @@
                     android:text="@string/fragment_share_note"
                     tools:layout_editor_absoluteX="148dp"
                     tools:layout_editor_absoluteY="173dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:background="@color/colorDarkGrey"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/player_name_text_size"
+                    android:layout_marginTop="@dimen/margin_small"/>
 
             </TableRow>
 
             <TableRow>
-
                 <Button
                     android:id="@+id/fragment_button_delete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_marginTop="@dimen/margin_small"
                     android:text="@string/fragment_delete_note"
-                    tools:layout_editor_absoluteX="148dp"
-                    tools:layout_editor_absoluteY="173dp"
-                    android:layout_weight="3"/>
+                    android:background="@color/colorDarkGrey"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/player_name_text_size"/>
             </TableRow>
 
         </TableLayout>

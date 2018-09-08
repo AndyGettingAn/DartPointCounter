@@ -1,10 +1,9 @@
 <resources>
 
-    <string name="action_settings">Settings</string>
-    <string name="add_widget">Add widget</string>
     <string name="app_name">Dart-Punkte-Zähler</string>
-    <string name="appwidget_text">Dartzähler Widget</string>
     <string name="average">Durchschnitt:</string>
+    <string name="button_clear">Clear</string>
+    <string name="button_ok">OK</string>
     <string name="darts_text">Der Spieler hat geworfen:</string>
     <string name="fragment_average">Average</string>
     <string name="fragment_counter100">100</string>
@@ -23,7 +22,6 @@
     <string name="menu_pointcounter">Punktezähler</string>
     <string name="new_game">Neues Spiel!</string>
     <string name="player_name">Spielername</string>
-    <string name="player_win">Herzlichen Glückwunsch! Sie haben das Spiel gewonnen!</string>
     <string name="projekt_name">Projekt: Dart-Punkte-Zähler</string>
     <string name="sets">Stets: </string>
     <string name="share_win">Erfolg teilen!</string>
