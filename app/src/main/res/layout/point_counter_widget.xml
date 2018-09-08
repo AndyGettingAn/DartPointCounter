@@ -80,7 +80,7 @@
         android:id="@+id/widget_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="zum Dart-Punkte-Zähler"
+        android:text="@string/widget_to_counter"
         android:background="@color/colorPrimaryDark"/>
 
 </LinearLayout>

@@ -254,7 +254,7 @@
                     android:id="@+id/fragment_button_share"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Eintrag teilen"
+                    android:text="@string/fragment_share_note"
                     tools:layout_editor_absoluteX="148dp"
                     tools:layout_editor_absoluteY="173dp"
                     android:layout_weight="3"/>
@@ -267,7 +267,7 @@
                     android:id="@+id/fragment_button_delete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Eintrag löschen"
+                    android:text="@string/fragment_delete_note"
                     tools:layout_editor_absoluteX="148dp"
                     tools:layout_editor_absoluteY="173dp"
                     android:layout_weight="3"/>
