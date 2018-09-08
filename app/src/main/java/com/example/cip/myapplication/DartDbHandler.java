@@ -11,10 +11,9 @@ import java.util.List;
 
 public class DartDbHandler extends SQLiteOpenHelper {
 
-    private static final String TAG = "SQLite";
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "Note_Manager";
-    private static final String TABLE_NOTE = "Note";
+    private static final String DATABASE_NAME = "History_Note_Manager";
+    private static final String TABLE_NOTE = "History_Note";
     private static final String COLUMN_NOTE_ID ="Note_Id";
     private static final String COLUMN_NOTE_TITLE ="Note_Title";
     private static final String COLUMN_NOTE_CONTENT = "Note_Content";
@@ -32,13 +31,11 @@ public class DartDbHandler extends SQLiteOpenHelper {
         db.execSQL(script);
     }
 
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NOTE);
         onCreate(db);
     }
-
 
     public void addNote(GameHistory note) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -48,7 +45,6 @@ public class DartDbHandler extends SQLiteOpenHelper {
         db.insert(TABLE_NOTE, null, values);
         db.close();
     }
-
 
     public GameHistory getNote(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -64,7 +60,7 @@ public class DartDbHandler extends SQLiteOpenHelper {
     }
 
     public List<GameHistory> getAllNotes() {
-        List<GameHistory> noteList = new ArrayList<GameHistory>();
+        List<GameHistory> noteList = new ArrayList<>();
         String selectQuery = "SELECT  * FROM " + TABLE_NOTE;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -81,15 +77,6 @@ public class DartDbHandler extends SQLiteOpenHelper {
         }
 
         return noteList;
-    }
-
-    public int getNotesCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_NOTE;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-        int count = cursor.getCount();
-        cursor.close();
-        return count;
     }
 
     public void deleteNote(GameHistory note) {
