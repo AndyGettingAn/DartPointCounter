@@ -16,7 +16,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/fragment_counter_p1"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:maxLength="8"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"/>
 
         <EditText
             android:id="@+id/frg_counter_p2"
@@ -24,13 +26,21 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/fragment_counter_p2"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:maxLength="8"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"/>
 
         <Button
-            android:id="@+id/frg_counter_button"
+            android:id="@+id/frg_counter_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_counter_btn" />
+            android:layout_weight="3"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/fragment_counter_btn"
+            android:background="@color/colorDarkGrey"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/player_name_text_size"/>
+
     </LinearLayout>
 
 </FrameLayout>

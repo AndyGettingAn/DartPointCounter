@@ -11,18 +11,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-public class GameHistoryFragment extends DialogFragment implements View.OnClickListener {
+public class StatisticFragment extends DialogFragment implements View.OnClickListener {
     private TextView game_Id, p1Name, p1average, p1counter100, p1counter160, p1counter180, p1highestthrow,
             p2Name, p2average, p2counter100, p2counter160, p2counter180, p2highestthrow;
     private final int WINNER_COLOR = Color.rgb(255, 255, 0);
     private View rootView;
     private String gameId;
 
-    public GameHistoryFragment() {
+    public StatisticFragment() {
     }
 
-    public static GameHistoryFragment newInstance(String gameTitle, String gameContent, int gameId) {
-        GameHistoryFragment fragment = new GameHistoryFragment();
+    public static StatisticFragment newInstance(String gameTitle, String gameContent, int gameId) {
+        StatisticFragment fragment = new StatisticFragment();
         Bundle bundle = new Bundle();
         bundle.putString("gameTitle",gameTitle);
         bundle.putString("gameContent",gameContent);

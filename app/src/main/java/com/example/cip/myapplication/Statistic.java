@@ -34,8 +34,8 @@ public class Statistic extends AppCompatActivity {
                 String gameContent = list.get(position).getNoteContent();
                 int gameId = list.get(position).getNoteId();
                 FragmentManager fm = getSupportFragmentManager();
-                GameHistoryFragment historyFragment = GameHistoryFragment.newInstance(gameTitle, gameContent, gameId);
-                historyFragment.show(fm, "fragment_game_history");
+                StatisticFragment statisticFragment = StatisticFragment.newInstance(gameTitle, gameContent, gameId);
+                statisticFragment.show(fm, "statistic_fragment");
             }
         });
     }

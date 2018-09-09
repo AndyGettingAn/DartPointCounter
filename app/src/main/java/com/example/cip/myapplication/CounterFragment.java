@@ -4,7 +4,6 @@ package com.example.cip.myapplication;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +38,7 @@ public class CounterFragment extends DialogFragment implements View.OnClickListe
         super.onViewCreated(view, savedInstanceState);
         p1Name = (EditText) view.findViewById(R.id.frg_counter_p1);
         p2Name = (EditText) view.findViewById(R.id.frg_counter_p2);
-        Button btn = (Button) view.findViewById(R.id.frg_counter_button);
+        Button btn = (Button) view.findViewById(R.id.frg_counter_btn);
         Bundle bundle = getArguments();
         p1Name.setText(bundle.getString("p1Name"));
         p2Name.setText(bundle.getString("p2Name"));

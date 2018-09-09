@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,7 +48,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             inputPoints[] = new TextView[DARTS_PER_TURN];
     private Button buttonFinish[] = new Button[NUMBER_OF_PLAYERS];
     private Boolean dartboardRequired,
-            namesSet = false,
+            doubleBackToExitPressedOnce = false,
             gameVariant;
     private final PointCounterWidget counter= new PointCounterWidget();
 
@@ -149,6 +150,18 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         } else if (id == R.id.player2Finish) {
             openPlayerDartboard(PLAYER_2);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return; }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Press Back again to exit the Game!", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() { doubleBackToExitPressedOnce=false; }}, 2000);
     }
 
     private void updateInput(String inputValue) {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_game_history"
-    tools:context="com.example.cip.myapplication.GameHistoryFragment">
+    tools:context="com.example.cip.myapplication.StatisticFragment">
 
 
     <android.support.constraint.ConstraintLayout
