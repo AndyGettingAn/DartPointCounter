@@ -3,11 +3,14 @@
 
     <EditTextPreference
         android:key="p1_name"
+        android:maxLength="8"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Geben Sie Spielername 1 ein" />
+        android:title="Geben Sie Spielername 1 ein"
+        android:inputType="numberDecimal" />
     <EditTextPreference
         android:key="p2_name"
+        android:maxLength="8"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Geben Sie Spielername 2 ein" />
@@ -22,4 +25,5 @@
         android:title="Spielvariante"
         android:summaryOn="501"
         android:summaryOff="301"/>
+
 </PreferenceScreen>

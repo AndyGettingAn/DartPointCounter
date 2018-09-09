@@ -15,8 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v4.app.FragmentManager;
-
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -58,14 +56,18 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_points_counter);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         dartboardRequired = sharedPref.getBoolean(Settings.KEY_DARTBOARD, false);
-        String p1Name = sharedPref.getString(Settings.KEY_PLAYER1_NAME, "Spieler 1");
-        String p2Name = sharedPref.getString(Settings.KEY_PLAYER2_NAME, "Spieler 2");
+        String p1Name = getAdjustedName(sharedPref.getString(Settings.KEY_PLAYER1_NAME, "Spieler 1"));
+        String p2Name = getAdjustedName(sharedPref.getString(Settings.KEY_PLAYER2_NAME, "Spieler 2"));
         FragmentManager fm = getSupportFragmentManager();
         CounterFragment counterFragment = CounterFragment.newInstance(p1Name, p2Name);
         counterFragment.show(fm, "fragment_counter");
         gameVariant = sharedPref.getBoolean(Settings.KEY_GAME_VARIANT, false);
         initialize();
         setDefaultValues();
+    }
+
+    private String getAdjustedName(String string) {
+        return string.replaceAll( "[^A-Za-z0-9]","");
     }
 
     private void initialize() {
@@ -158,7 +160,7 @@ public class PointsCounter extends AppCompatActivity implements View.OnClickList
             super.onBackPressed();
             return; }
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Press Back again to exit the Game!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Nochmal Zurück um das Spiel zu verlassen!", Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() { doubleBackToExitPressedOnce=false; }}, 2000);

@@ -13,8 +13,6 @@ import android.widget.EditText;
 public class CounterFragment extends DialogFragment implements View.OnClickListener{
 
     private EditText p1Name, p2Name;
-    private Button btn;
-    private String p1Name_txt, p2Name_txt;
 
     public CounterFragment() {
     }
@@ -47,8 +45,8 @@ public class CounterFragment extends DialogFragment implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        p1Name_txt = p1Name.getText().toString();
-        p2Name_txt = p2Name.getText().toString();
+        String p1Name_txt = p1Name.getText().toString();
+        String p2Name_txt = p2Name.getText().toString();
         ((PointsCounter) getActivity()).setPlayerNames(p1Name_txt,p2Name_txt);
         getFragmentManager().beginTransaction().remove(CounterFragment.this).commit();
     }

@@ -54,8 +54,9 @@ class DartDbHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
-        return new GameHistory(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2));
+        GameHistory result = new GameHistory(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2));
+        cursor.close();
+        return result;
     }
 
     public List<GameHistory> getAllNotes() {
@@ -74,7 +75,7 @@ class DartDbHandler extends SQLiteOpenHelper {
                 noteList.add(note);
             } while (cursor.moveToNext());
         }
-
+        cursor.close();
         return noteList;
     }
 
